@@ -1,4 +1,4 @@
-const data = [1, 2, 3, 4]
+import data from "../../utils/data"
 
 const app = document.getElementById('app')
 
