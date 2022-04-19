@@ -1,1 +1,15 @@
-@import './pages/404/404.scss', './pages/500/500.scss';
+@import './pages/404/404.scss', './pages/500/500.scss', './pages/login/login.scss';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: system-ui;
+}
+
+.button {
+    background-color: green;
+}
+
+.link {
+}
