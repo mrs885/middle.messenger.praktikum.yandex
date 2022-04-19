@@ -1,6 +1,8 @@
 $box-width: 340px;
 $box-height: 460px;
 $border-color: rgb(211, 211, 211);
+$base-color: #3369f3;
+
 
 .login {
 
@@ -15,10 +17,21 @@ $border-color: rgb(211, 211, 211);
         box-shadow: 0 0 5px rgba(0,0,0,0.3);
         margin-left: auto;
         margin-right: auto;
-        margin-top: 50px;
         display: flex;
         flex-direction: column;
     }
+    &__header {
+        display: flex;
+        flex-direction: column;
+        padding: 30px;
+    }
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 30px;
+        height: 100%;
+    } 
     &__title {
         font-size: 20pt;
         padding-top: 50px;
@@ -26,41 +39,50 @@ $border-color: rgb(211, 211, 211);
         margin-right: auto;
         margin-bottom: 70px;
     }
-    &__login-field {
+    &__field {
         margin-left: auto;
         margin-right: auto;
         padding: 10px;
+        width: 300px;
     }
-    &__password-field {
-        margin-left: auto;
-        margin-right: auto;
-        padding: 10px;
-    }
-    &__auth-button {
-        margin-left: auto;
-        margin-right: auto;
+    &__button-auth {
         padding: 10px;
     }
     &__no-account {
         margin-left: auto;
         margin-right: auto;
+        font-size: 8pt;
+        color: $base-color;
     }
 }
 
-.input-field .input-field__login{
+.text-field__input{
     border: none;
-    border-bottom: 1px solid #3369f3;
+    border-bottom: 1px solid $base-color;
     border-radius: 0;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
-    height: calc(1.5rem + 2px);
+    height: calc(2rem + 5px);
+    width: 100%;
     line-height: 1.25;
-    padding: 1rem 0.75rem;
+    padding: 0.5rem 0.8rem;
     background-color: white;
 }
 
-.input-field .input-field__login:focus{
+.text-field__input:focus{
     outline: 0;
     background-color: #eee;
 }
 
+.butt{
+    height: calc(2rem + 5px);
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    background: #4676D7;
+    color: #fff;
+}
+.butt:hover{
+    background: #8da7dc;
+    color: black;
+}
