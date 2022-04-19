@@ -4,6 +4,7 @@ let config = {
         ['500', '500.html'],
         ['501', '501.html'],
         ['Login', 'login.html'],
+        ['Signin', 'signin.html'],
     ]
 }
 

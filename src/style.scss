@@ -1,4 +1,5 @@
-@import './pages/404/404.scss', './pages/500/500.scss', './pages/login/login.scss';
+@import './pages/404/404.scss', './pages/500/500.scss', './pages/login/login.scss',
+'./pages/signin/signin.scss';
 
 *,
 *::before,
@@ -7,9 +8,78 @@
     font-family: system-ui;
 }
 
-.button {
-    background-color: green;
+.text-field{
+    position: relative;
 }
 
-.link {
+.text-field__input{
+    border: none;
+    border-bottom: 1px solid $base-color;
+    border-radius: 0;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    height: calc(2rem + 15px);
+    width: 100%;
+    line-height: 1.25;
+    background-color: white;
+}
+
+.text-field__input:focus{
+    outline: 0;
+    background-color: #eee;
+}
+
+.text-field__input:disabled, .text-field__input[readonly] {
+      background-color: #f5f5f5;
+      opacity: 1;
+    }
+
+.text-field__label {
+    color: gray;
+    margin-bottom: 0.25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 1rem .75rem;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+    transition: color .15s ease-in-out, transform .15s ease-in-out;
+  }
+
+  .text-field .text-field__input::-moz-placeholder {
+    color: transparent;
+  }
+
+  .text-field .text-field__input::placeholder {
+    color: transparent;
+  }
+
+  .text-field .text-field__input:focus,
+    .text-field .text-field__input:not(:placeholder-shown) {
+      padding-top: 1.625rem;
+      padding-bottom: .625rem;
+      border-bottom: 1px solid #03a9f4;
+    }
+
+    .text-field .text-field__input:focus~.text-field__label,
+    .text-field .text-field__input:not(:placeholder-shown)~.text-field__label {
+      transform: scale(.85) translateY(-.75rem) translateX(.15rem);
+      color: #03a9f4;
+    }
+
+
+
+.butt{
+    height: calc(2rem + 5px);
+    width: 100%;
+    border: 0;
+    border-radius: 5px;
+    background: #4676D7;
+    color: #fff;
+}
+.butt:hover{
+    background: #8da7dc;
+    color: black;
 }

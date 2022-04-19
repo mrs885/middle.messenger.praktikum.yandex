@@ -1,10 +1,10 @@
 $box-width: 340px;
-$box-height: 460px;
+$box-height: 615px;
 $border-color: rgb(211, 211, 211);
 $base-color: #3369f3;
 
 
-.login {
+.signin {
 
     &__body {
         background-color: white;
@@ -34,16 +34,16 @@ $base-color: #3369f3;
     } 
     &__title {
         font-size: 20pt;
-        padding-top: 50px;
+        padding-top: 30px;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 70px;
+        margin-bottom: 40px;
     }
     &__field {
         margin-left: auto;
         margin-right: auto;
-        width: 100%;
         padding-bottom: 20px;
+        width: 100%;
     }
     &__button-auth {
         padding: 10px;
@@ -55,3 +55,4 @@ $base-color: #3369f3;
         color: $base-color;
     }
 }
+
