@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "chat",
   "scripts": {
-    "build": "parcel build ./static/*.hbs --public-url .",
-    "dev": "parcel ./static/*.hbs --port 3000",
+    "build": "parcel build ./src/index.html --public-url .",
+    "dev": "parcel ./src/index.html --port 3000",
     "serve": "node ./src/server.js"
   },
   "repository": {
@@ -18,9 +18,9 @@
   },
   "homepage": "https://github.com/mrs885/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
-    "@anikin/parcel-transformer-handlebars": "^1.0.9",
     "@parcel/transformer-sass": "^2.4.1",
-    "parcel": "^2.4.1"
+    "parcel": "^2.4.1",
+    "parcel-transformer-hbs": "^1.0.4"
   },
   "dependencies": {
     "express": "^4.17.3",

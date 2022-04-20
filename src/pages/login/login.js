@@ -1,10 +1,6 @@
-import Handlebars from "handlebars"
-//import tmpl from "../../../static/login.hbs"
+import temp from './login.hbs'
 
-const data = {
-    login: "user"
+export default (props) => {
+
+    return temp({...props})
 }
-
-const page = Handlebars.compile(tmpl)
-
-document.body.appendChild(page(date))
