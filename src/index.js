@@ -1,3 +1,4 @@
+import Handlebars from "handlebars"
 import config from "./utils/config"
 
 const app = document.getElementById('app')
@@ -13,3 +14,19 @@ config.indexPages.forEach((item) => {
     a = document.createElement('div')
     app.appendChild(a)
 })
+
+
+const templ = `
+    <div class="{{ wrapperClassName }}">
+        {{ buttonText }}
+    </div>`
+
+const page = Handlebars.compile(templ)({
+    wrapperClassName: 'chat__wrapper',
+    buttonText: 'Добавить чат'
+})
+
+const body = document.getElementById('templ')
+
+body.innerHTML = page
+

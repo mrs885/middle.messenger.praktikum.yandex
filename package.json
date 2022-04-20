@@ -23,6 +23,7 @@
     "parcel": "^2.4.1"
   },
   "dependencies": {
-    "express": "^4.17.3"
+    "express": "^4.17.3",
+    "handlebars": "^4.7.7"
   }
 }
