@@ -1,6 +1,7 @@
 import Home from "./pages/home/home"
 import Login from "./pages/login/login"
 import Signin from "./pages/signin/signin"
+import Error from "./pages/error/error"
 
 const state = {
     user: {
@@ -17,7 +18,19 @@ const state = {
         ['500', '500'],
         ['Login', 'login'],
         ['Signin', 'signin'],
-    ]
+    ],
+    error404: {
+        title: "404",
+        message: "Не туда попали",
+        href: "/index.html",
+        link: "Назад к чатам"
+    },
+    error500: {
+        title: "500",
+        message: "Мы уже фиксим",
+        href: "/index.html",
+        link: "Назад к чатам"
+    }
 }
 
 const app = document.getElementById('app')
@@ -40,6 +53,12 @@ function handler(event){
             break
         case '/signin':
             app.innerHTML = Signin(state.user)
+            break
+        case '/404':
+            app.innerHTML = Error(state.error404)
+            break
+        case '/500':
+            app.innerHTML = Error(state.error500)
             break
         default:
     }

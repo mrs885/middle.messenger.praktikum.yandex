@@ -4,7 +4,8 @@
   "description": "chat",
   "scripts": {
     "build": "parcel build ./src/index.html --public-url .",
-    "dev": "parcel ./src/index.html --port 3000",
+    "start": "npm run build && npm run serve",
+    "dev": "parcel serve ./src/*.html --port 3000",
     "serve": "node ./src/server.js"
   },
   "repository": {

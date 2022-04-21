@@ -1,11 +1,19 @@
-@import './pages/404/404.scss', './pages/500/500.scss', './pages/login/login.scss',
-'./pages/signin/signin.scss';
-
 *,
 *::before,
 *::after {
     box-sizing: border-box;
     font-family: system-ui;
+}
+
+a:active, /* активная/посещенная ссылка */
+a {
+    color: #3369f3;
+    border: 0;
+}
+
+a:hover{
+    color: #113ba7;
+    border: 1px;
 }
 
 .text-field{
@@ -14,7 +22,7 @@
 
 .text-field__input{
     border: none;
-    border-bottom: 1px solid $base-color;
+    border-bottom: 1px solid #3369f3;
     border-radius: 0;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;

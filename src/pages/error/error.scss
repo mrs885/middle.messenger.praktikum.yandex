@@ -1,0 +1,19 @@
+.error {
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: 100vh;
+    }
+    &__title {
+        font-size: 30pt;
+        padding-bottom: 15px;
+    }
+    &__message {
+        padding-bottom: 45px;
+    }
+    &__link {
+        font-size: 8pt;
+    }
+}
