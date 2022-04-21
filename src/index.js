@@ -1,7 +1,4 @@
-import Home from "./pages/home/home"
-import Login from "./pages/login/login"
-import Signin from "./pages/signin/signin"
-import Error from "./pages/error/error"
+import {Home, Login, Signin, ErrorP, Profile} from "./pages/index"
 
 const state = {
     user: {
@@ -18,6 +15,7 @@ const state = {
         ['500', '500'],
         ['Login', 'login'],
         ['Signin', 'signin'],
+        ['Profile', 'profile'],
     ],
     error404: {
         title: "404",
@@ -55,10 +53,13 @@ function handler(event){
             app.innerHTML = Signin(state.user)
             break
         case '/404':
-            app.innerHTML = Error(state.error404)
+            app.innerHTML = ErrorP(state.error404)
             break
         case '/500':
-            app.innerHTML = Error(state.error500)
+            app.innerHTML = ErrorP(state.error500)
+            break
+        case '/profile':
+            app.innerHTML = Profile(state.user)
             break
         default:
     }

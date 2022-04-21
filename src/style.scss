@@ -82,6 +82,69 @@ color: transparent;
     color: #03a9f4;
 }
 
+.text-field-wide__input{
+    border: none;
+    border-bottom: 1px solid #03a9f4;
+    border-radius: 0;
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+    height: calc(2rem + 15px);
+    width: 100%;
+    line-height: 1.25;
+    background-color: white;
+    color: gray;
+    text-align: right;
+}
+
+.text-field-wide__input:focus{
+    outline: 0;
+}
+
+.text-field-wide__input:disabled, .text-field-wide__input[readonly] {
+      background-color: #f5f5f5;
+      opacity: 1;
+    }
+
+.text-field-wide .text-field-wide__input::-moz-placeholder {
+    color: transparent;
+}
+    
+.text-field-wide .text-field-wide__input::placeholder {
+    color: transparent;
+}
+        
+
+
+.text-field-wide .text-field-wide__input:focus,
+.text-field-wide .text-field-wide__input:not(:placeholder-shown) {
+    padding-top: 1.625rem;
+    padding-bottom: .625rem;
+    border-bottom: 1px solid #03a9f4;
+}
+
+.text-field-wide__container{
+    position: relative;
+    margin: 0 auto;
+    width: 70%;
+    max-width: 450px;
+    min-width: 300px;
+}
+    
+.text-field-wide__label {
+    color: black;
+    font-style: bold;
+    margin-bottom: 0.25rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 1.3rem .75rem;
+    pointer-events: none;
+    border: 1px solid transparent;
+    transform-origin: 0 0;
+}
+
+
 .butt{
     height: calc(2rem + 5px);
     width: 100%;
