@@ -1,3 +1,5 @@
+$color-dash: #b6b6b6;
+
 *,
 *::before,
 *::after {
@@ -8,11 +10,12 @@
 a:active, /* активная/посещенная ссылка */
 a {
     color: #3369f3;
-    border: 0;
+    text-decoration: none;
+    border: none;
 }
 
 a:hover{
-    color: #113ba7;
+    color: #0b308d;
     border: 1px;
 }
 
@@ -22,7 +25,7 @@ a:hover{
 
 .text-field__input{
     border: none;
-    border-bottom: 1px solid #3369f3;
+    border-bottom: 1px solid $color-dash;
     border-radius: 0;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
@@ -76,6 +79,7 @@ color: transparent;
     border-bottom: 1px solid #03a9f4;
 }
 
+
 .text-field .text-field__input:focus~.text-field__label,
 .text-field .text-field__input:not(:placeholder-shown)~.text-field__label {
     transform: scale(.85) translateY(-.75rem) translateX(.15rem);
@@ -84,7 +88,7 @@ color: transparent;
 
 .text-field-wide__input{
     border: none;
-    border-bottom: 1px solid #03a9f4;
+    border-bottom: 1px solid $color-dash;
     border-radius: 0;
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
@@ -144,6 +148,32 @@ color: transparent;
     transform-origin: 0 0;
 }
 
+.text-field-wide__link_normal{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.text-field-wide__link_red{
+    position: absolute;
+    color: red;
+    top: 0;
+    left: 0;
+}
+
+.text-field-wide__link_red:hover{
+    color: rgb(162, 20, 20);
+}
+
+.text-field-wide__dash{
+    color: $color-dash;
+    height: 1px;
+    width: 100%;
+    top: 10px;
+    left: 10px;
+    border: none;
+	border-bottom: 1px solid $color-dash;
+}
 
 .butt{
     height: calc(2rem + 5px);
@@ -154,6 +184,11 @@ color: transparent;
     color: #fff;
 }
 .butt:hover{
-    background: #8da7dc;
-    color: black;
+    background: #99bafc;
+    color: rgb(0, 0, 0);
+}
+
+.functional__small-brake{
+    font-size: 6pt;
+    user-select: none;
 }

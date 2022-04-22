@@ -20,13 +20,13 @@ const state = {
     error404: {
         title: "404",
         message: "Не туда попали",
-        href: "/index.html",
+        href: "/home",
         link: "Назад к чатам"
     },
     error500: {
         title: "500",
         message: "Мы уже фиксим",
-        href: "/index.html",
+        href: "/home",
         link: "Назад к чатам"
     }
 }
@@ -36,16 +36,12 @@ const app = document.getElementById('app')
 //app.innerHTML = Login(state.user)
 app.innerHTML = Home(state.indexPages)
 
-// получаем все ссылки на странице
-let anchors = document.querySelectorAll('a')
-// вешаем на событие onclick обработчик
-for ( let anchor of anchors ) anchor.onclick = handler
+app.onclick = handler
 
 function handler(event){
-    let url = new URL(event.currentTarget.href)
     event.preventDefault()
-
-    switch(url.pathname){
+    
+    switch(event.target.pathname){
         case '/login':
             app.innerHTML = Login(state.user)
             break
@@ -61,7 +57,11 @@ function handler(event){
         case '/profile':
             app.innerHTML = Profile(state.user)
             break
+        case '/home':
+            app.innerHTML = Home(state.indexPages)
+            break
         default:
+            
     }
 
 }
