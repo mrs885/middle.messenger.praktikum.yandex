@@ -187,8 +187,28 @@ color: transparent;
     background: #99bafc;
     color: rgb(0, 0, 0);
 }
+.butt:active{
+    background: #719ced;
+}
+
+.butt-round{
+    cursor: pointer;
+    border: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #4676D7;
+}
+.butt-round:hover{
+    background: #99bafc;
+}
+.butt-round:active{
+    background: #719ced;
+}
+
 
 .functional__small-brake{
     font-size: 6pt;
     user-select: none;
 }
+

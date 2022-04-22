@@ -6,9 +6,12 @@
     }
     &__left-area {
         display: flex;
+        border-right-width: 1px;
+        border-right-style: solid;
+        color: rgb(222, 222, 222);
         flex-direction: column;
-        width: 50px;
-        background-color: rgb(221, 221, 217);
+        width: 60px;
+        background-color: rgb(244, 244, 244);
         justify-content: center;
         text-align: center;
     }
@@ -19,6 +22,10 @@
         text-align: center;
     }
     &__button-back {
+        width: 40px;
+        height: 40px;
+        margin-left: auto;
+        margin-right: auto;
     }            
 }
 

@@ -20,13 +20,13 @@ const state = {
     error404: {
         title: "404",
         message: "Не туда попали",
-        href: "/home",
+        href: "home",
         link: "Назад к чатам"
     },
     error500: {
         title: "500",
         message: "Мы уже фиксим",
-        href: "/home",
+        href: "home",
         link: "Назад к чатам"
     }
 }
@@ -40,24 +40,27 @@ app.onclick = handler
 
 function handler(event){
     event.preventDefault()
+
+    //console.log(event)
+    let route = event.target.attributes[0]['nodeValue']
     
-    switch(event.target.pathname){
-        case '/login':
+    switch(route){
+        case 'login':
             app.innerHTML = Login(state.user)
             break
-        case '/signin':
+        case 'signin':
             app.innerHTML = Signin(state.user)
             break
-        case '/404':
+        case '404':
             app.innerHTML = ErrorP(state.error404)
             break
-        case '/500':
+        case '500':
             app.innerHTML = ErrorP(state.error500)
             break
-        case '/profile':
+        case 'profile':
             app.innerHTML = Profile(state.user)
             break
-        case '/home':
+        case 'home':
             app.innerHTML = Home(state.indexPages)
             break
         default:
