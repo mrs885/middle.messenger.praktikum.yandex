@@ -1,11 +1,11 @@
-import homeTemp from './home.hbs'
+import temp from './home.hbs'
 
 export default (props) => {
     
     let page = ''
 
     props.forEach((item) => {
-        page += homeTemp({
+        page += temp({
             link: item[1],
             text: item[0]
         })

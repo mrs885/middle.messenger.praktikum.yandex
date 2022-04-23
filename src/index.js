@@ -1,4 +1,4 @@
-import {Home, Login, Signin, ErrorP, Profile} from "./pages/index"
+import {Home, Login, Signin, ErrorP, Profile, Main} from "./pages/index"
 
 const state = {
     user: {
@@ -16,6 +16,7 @@ const state = {
         ['Login', 'login'],
         ['Signin', 'signin'],
         ['Profile', 'profile'],
+        ['Main', 'main'],
     ],
     error404: {
         title: "404",
@@ -62,6 +63,9 @@ function handler(event){
             break
         case 'home':
             app.innerHTML = Home(state.indexPages)
+            break
+        case 'main':
+            app.innerHTML = Main()
             break
         default:
             
