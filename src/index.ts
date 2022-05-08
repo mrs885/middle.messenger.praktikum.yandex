@@ -32,7 +32,17 @@ const state = {
     }
 }
 
-const app = document.getElementById('app')
+const router = {
+    login: Login(state.user),
+    signin: Signin(state.user),
+    404: ErrorP(state.error404),
+    500: ErrorP(state.error500),
+    profile: Profile(state.user),
+    home: Home(state.indexPages),
+    main: Main(),
+}
+
+const app: HTMLElement = document.getElementById('app')
 
 //app.innerHTML = Login(state.user)
 app.innerHTML = Home(state.indexPages)
@@ -42,33 +52,6 @@ app.onclick = handler
 function handler(event){
     event.preventDefault()
 
-    //console.log(event)
     let route = event.target.attributes[0]['nodeValue']
-    
-    switch(route){
-        case 'login':
-            app.innerHTML = Login(state.user)
-            break
-        case 'signin':
-            app.innerHTML = Signin(state.user)
-            break
-        case '404':
-            app.innerHTML = ErrorP(state.error404)
-            break
-        case '500':
-            app.innerHTML = ErrorP(state.error500)
-            break
-        case 'profile':
-            app.innerHTML = Profile(state.user)
-            break
-        case 'home':
-            app.innerHTML = Home(state.indexPages)
-            break
-        case 'main':
-            app.innerHTML = Main()
-            break
-        default:
-            
-    }
-
+    app.innerHTML = router[route]
 }
