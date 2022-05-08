@@ -1,0 +1,57 @@
+$box-width: 340px;
+$box-height: 650px;
+$border-color: rgb(211, 211, 211);
+$base-color: #3369f3;
+
+
+.signin {
+
+    &__body {
+        background-color: white;
+        width: $box-width;
+        height: $box-height;
+        border: 1px;
+        border-color: $border-color;
+        border-style: solid; 
+        border-radius: 2%;
+        box-shadow: 0 0 5px rgba(0,0,0,0.3);
+        margin-left: auto;
+        margin-right: auto;
+        display: flex;
+        flex-direction: column;
+    }
+    &__header {
+        display: flex;
+        flex-direction: column;
+        padding: 30px 30px 10px 30px;
+    }
+    &__footer {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+        height: 100%;
+    } 
+    &__title {
+        font-size: 20pt;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 30px;
+    }
+    &__field {
+        margin-left: auto;
+        margin-right: auto;
+        width: 100%;
+    }
+    &__button-auth {
+        padding: 10px;
+    }
+    &__no-account {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 8pt;
+        color: $base-color;
+    }
+}
+

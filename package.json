@@ -1,0 +1,31 @@
+{
+  "name": "middle.messenger.praktikum.yandex",
+  "version": "1.0.0",
+  "description": "chat",
+  "scripts": {
+    "build": "parcel build ./static/index.html --public-url .",
+    "start": "npm run build && npm run serve",
+    "dev": "parcel serve ./static/*.html --port 3000",
+    "serve": "node ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mrs885/middle.messenger.praktikum.yandex.git"
+  },
+  "author": "Roman Martynov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mrs885/middle.messenger.praktikum.yandex/issues"
+  },
+  "homepage": "https://github.com/mrs885/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.4.1",
+    "@parcel/config-default": "^2.0.0",
+    "parcel": "^2.4.1",
+    "parcel-transformer-hbs": "^1.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.3",
+    "handlebars": "^4.7.7"
+  }
+}
