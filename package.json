@@ -6,6 +6,7 @@
     "build": "parcel build ./static/index.html --public-url .",
     "start": "npm run build && npm run serve",
     "dev": "parcel serve ./static/*.html --port 3000",
+    "test": "parcel ./static/index-test.html --port 3000",
     "serve": "node ./src/server.ts"
   },
   "repository": {
@@ -21,6 +22,7 @@
   "devDependencies": {
     "@parcel/config-default": "^2.0.0",
     "@parcel/transformer-sass": "^2.4.1",
+    "nanoid": "^3.3.4",
     "parcel": "^2.4.1",
     "parcel-transformer-hbs": "^1.0.4",
     "ts-node": "^10.7.0",
