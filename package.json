@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/mrs885/middle.messenger.praktikum.yandex#readme",
   "devDependencies": {
+    "@anikin/parcel-transformer-handlebars-precompile": "^1.0.1",
     "@parcel/config-default": "^2.0.0",
     "@parcel/transformer-sass": "^2.4.1",
     "nanoid": "^3.3.4",

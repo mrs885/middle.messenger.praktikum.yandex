@@ -7,10 +7,10 @@ interface testPageProps{
 
 class TestPage extends Block{
     constructor(props: testPageProps){
-        super('div', props);
+        super(props);
     }
 
-    render(): string {
+    render() {
         return this.props.name;
     }
 }

@@ -1,5 +1,6 @@
 import EventBus from "./EventBus";
 import { nanoid } from 'nanoid';
+import { isJSDocThisTag } from "typescript";
 
 export default class Block {
     static EVENTS = {
@@ -12,7 +13,7 @@ export default class Block {
     public id = nanoid;
 
     private _element : HTMLElement | null = null;
-    private _meta : { tagName: string, props: any } = null;
+    private _meta : { props: any } = null;
 
     protected props: any;
     protected children: any;
@@ -25,13 +26,12 @@ export default class Block {
      * @returns {void}
      */
 
-    constructor(tagName : string = "div", propsAndChildren: any = {}) {
+    constructor(propsAndChildren: any = {}) {
       const eventBus = new EventBus();
       const { children, props } = this._getChildren(propsAndChildren);
       this.children = children;
 
       this._meta = {
-        tagName,
         props
       };
   
@@ -57,15 +57,12 @@ export default class Block {
       return { children, props };
     }
 
-    // protected compile(template, props) {
-    //   const propsAndStubs = { ...props };
-
-    //   Object.entries(this.children).forEach(([key, child]) => {
-    //       propsAndStubs[key] = `<div data-id="${child._id}"></div>`
-    //   });
-
-    //   return Templator.compile(template, propsAndStubs);        
-    // }
+    protected compile(template: (context: any) => string, context: any) : DocumentFragment {
+      const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
+      const htmlString = template(context);
+      fragment.innerHTML = htmlString;
+      return fragment.content;
+    }
   
     _registerEvents(eventBus) {
       eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -74,13 +71,7 @@ export default class Block {
       eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
   
-    _createResources() {
-      const { tagName } = this._meta;
-      this._element = this._createDocumentElement(tagName);
-    }
-  
     init() {
-      this._createResources();
       this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
   
@@ -119,21 +110,23 @@ export default class Block {
     }
   
     _render() {
-      const block = this.render();
+      const fragment = this.render();
 
-      this._removeEvents();
-      // Этот небезопасный метод для упрощения логики
-      // Используйте шаблонизатор из npm или напишите свой безопасный
-      // Нужно не в строку компилировать (или делать это правильно),
-      // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-      this._element!.innerHTML = block;
-      
+      const newElement = fragment.firstElementChild as HTMLElement;
+
+      if(this._element){
+        this._removeEvents();
+        this._element.replaceWith(newElement)
+      }
+
+      this._element = newElement; 
+
       this._addEvents();  
     }
   
       // Может переопределять пользователь, необязательно трогать
-    render() : string {
-        return '';
+    protected render() : DocumentFragment {
+        return new DocumentFragment();
     }
   
     getContent() : HTMLElement | null {

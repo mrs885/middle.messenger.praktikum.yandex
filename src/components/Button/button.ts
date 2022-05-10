@@ -1,4 +1,5 @@
 import Block from "../../utils/block";
+import template from "./button.hbs"
 
 interface ButtonProps{
   label: string;
@@ -9,10 +10,10 @@ interface ButtonProps{
 
 export class Button extends Block{
     constructor(props: ButtonProps){
-        super('button', props);
+        super( props);
     }
 
-    render(): string {
-      return this.props.label;
+    render() {
+      return this.compile(template, {...this.props});
     }
 }
