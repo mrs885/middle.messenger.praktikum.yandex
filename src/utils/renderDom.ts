@@ -8,6 +8,8 @@ export function renderDom(rootSelector: string, component: Block){
         throw new Error ("нет Root!")
     }
 
+    component.dispatchComponentDidMoun();
+
     root.innerHTML = '';
 
     root.append(component.getContent());

@@ -1,18 +1,22 @@
-import { Button } from "./components/Button/button"
-import { renderDom } from "./utils/renderDom"
+import { Button } from "./components/Button/button";
+import { renderDom } from "./utils/renderDom";
+import TestPage from './pages/test/test';
 
 document.addEventListener('DOMContentLoaded', () => {
-    const button = new Button ({
-      label: 'click me'  
-    })
 
-    renderDom('app', button);
+    // const button = new Button ({
+    //   label: 'click me'  
+    // })
 
-    button.setProps({
-        events: {
-            click: () => {
-                console.log('clicked!');
-            }
-        }
-    })
+    const testPage = new TestPage();
+
+    renderDom('app', testPage);
+
+    // button.setProps({
+    //     events: {
+    //         click: () => {
+    //             console.log('clicked!');
+    //         }
+    //     }
+    // })
 });

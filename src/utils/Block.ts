@@ -1,6 +1,7 @@
 import EventBus from "./EventBus";
 import { nanoid } from 'nanoid';
 import { isJSDocThisTag } from "typescript";
+import { template } from "handlebars";
 
 export default class Block {
     static EVENTS = {
@@ -10,13 +11,13 @@ export default class Block {
       FLOW_RENDER: "flow:render"
     };
   
-    public id = nanoid;
+    public id = nanoid(6);
 
     private _element : HTMLElement | null = null;
     private _meta : { props: any } = null;
 
     protected props: any;
-    protected children: any;
+    protected children: Record<string, Block>;
     protected eventBus: () => EventBus;
   
     /** JSDoc
@@ -31,19 +32,26 @@ export default class Block {
       const { children, props } = this._getChildren(propsAndChildren);
       this.children = children;
 
+      
       this._meta = {
         props
       };
-  
+      
       this.props = this._makePropsProxy(props);
       this.eventBus = () => eventBus;
+      
+      this.initChildren();
   
       this._registerEvents(eventBus);
       eventBus.emit(Block.EVENTS.INIT);
     }
 
+    protected initChildren(){
+
+    };
+
     _getChildren(propsAndChildren: any) {
-      const children = {};
+      const children = {}; 
       const props = {};
 
       Object.entries(propsAndChildren).forEach(([key, value]) => {
@@ -58,9 +66,26 @@ export default class Block {
     }
 
     protected compile(template: (context: any) => string, context: any) : DocumentFragment {
+     
       const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
+     
+      Object.entries(this.children).forEach(([key, child]) => {
+        context[key] = `<div data-id="id-${child.id}"> </div>`
+      })
+
       const htmlString = template(context);
+     
       fragment.innerHTML = htmlString;
+
+      Object.entries(this.children).forEach(([key, child]) => {
+        const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
+
+        if (!stub)
+          return;
+
+        stub.replaceWith(child.getContent());
+      })
+     
       return fragment.content;
     }
   
@@ -144,8 +169,9 @@ export default class Block {
           return typeof value === 'function' ? value.bind(target) : value
         },
         set(target: Record<string, unknown>, prop: string, value: unknown){
+          const oldProps = {...target}
           target[prop] = value
-          self.eventBus().emit(Block.EVENTS.FLOW_CDU, {...target}, target)
+          self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldProps, target)
           return true;
         },
         deleteProperty(){
