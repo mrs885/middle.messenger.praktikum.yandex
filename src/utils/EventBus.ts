@@ -17,9 +17,9 @@ export default class EventBus {
 	}
 
 	off(event: string, callback: Handler) {
-		//Код здесь
 		if (!this.listeners[event]) {
-			throw new Error(`Нет события: ${event}`);
+			//throw new Error(`Нет события: ${event}`);
+			return;
 		}
 
 		this.listeners[event] = this.listeners[event].filter(
@@ -28,14 +28,14 @@ export default class EventBus {
 	}
 
 	emit(event: string, ...args: unknown[]) : void {
-		//Код здесь
 		if (!this.listeners[event]) {
-			throw new Error(`Нет события: ${event}`);
-			}
+			//throw new Error(`Нет события: ${event}`);
+			return;
+		}
 
-			this.listeners[event].forEach(listener => {
-					listener(...args);
-			});
+		this.listeners[event].forEach(listener => {
+				listener(...args);
+		});
 	}
 }
   

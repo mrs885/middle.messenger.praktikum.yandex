@@ -1,4 +1,7 @@
+import home from "./pages/home/home";
 import {Home, Login, Signin, ErrorP, Profile, Main} from "./pages/index"
+import Block from "./utils/block";
+import { renderDom } from "./utils/renderDom";
 
 const state = {
     user: {
@@ -32,26 +35,32 @@ const state = {
     }
 }
 
-const router = {
-    login: Login(state.user),
-    signin: Signin(state.user),
-    404: ErrorP(state.error404),
-    500: ErrorP(state.error500),
-    profile: Profile(state.user),
+// const router = {
+//     login: Login(state.user),
+//     signin: Signin(state.user),
+//     404: ErrorP(state.error404),
+//     500: ErrorP(state.error500),
+//     profile: Profile(state.user),
+//     home: Home(state.indexPages),
+//     main: Main(),
+// }
+
+
+const router : Record<string, Block> = {
     home: Home(state.indexPages),
-    main: Main(),
 }
 
-const app: HTMLElement = document.getElementById('app')
+renderDom('app', router.home);
 
-//app.innerHTML = Login(state.user)
-app.innerHTML = Home(state.indexPages)
+//const app: HTMLElement = document.getElementById('app')
 
-app.onclick = handler
+// app.innerHTML = Home(state.indexPages)
 
-function handler(event){
-    event.preventDefault()
+// app.onclick = handler
 
-    let route = event.target.attributes[0]['nodeValue']
-    app.innerHTML = router[route]
-}
+// function handler(event){
+//     event.preventDefault()
+
+//     let route = event.target.attributes[0]['nodeValue']
+//     app.innerHTML = router[route]
+// }

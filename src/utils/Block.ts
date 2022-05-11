@@ -17,7 +17,7 @@ export default class Block {
     private _meta : { props: any } = null;
 
     protected props: any;
-    protected children: Record<string, Block>;
+    protected children: Record<string, Block | Block[]>;
     protected eventBus: () => EventBus;
   
     /** JSDoc
@@ -41,12 +41,17 @@ export default class Block {
       this.eventBus = () => eventBus;
       
       this.initChildren();
+      this.initProps();
   
       this._registerEvents(eventBus);
       eventBus.emit(Block.EVENTS.INIT);
     }
 
     protected initChildren(){
+
+    };
+    
+    protected initProps(){
 
     };
 
@@ -56,6 +61,8 @@ export default class Block {
 
       Object.entries(propsAndChildren).forEach(([key, value]) => {
         if (value instanceof Block) {
+          children[key] = value;
+        } else if(Array.isArray(value) && value.every(v => (v instanceof Block))) {
           children[key] = value;
         } else {
           props[key] = value;
@@ -70,21 +77,38 @@ export default class Block {
       const fragment = this._createDocumentElement('template') as HTMLTemplateElement;
      
       Object.entries(this.children).forEach(([key, child]) => {
-        context[key] = `<div data-id="id-${child.id}"> </div>`
+        if(Array.isArray(child)) {
+          context[key] = child.map(ch => {
+            return `<div data-id="id-${ch.id}"> </div>`;
+          })
+        }
+        else
+          context[key] = `<div data-id="id-${child.id}"> </div>`;
       })
 
       const htmlString = template(context);
-     
+
       fragment.innerHTML = htmlString;
 
       Object.entries(this.children).forEach(([key, child]) => {
-        const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
+        if(Array.isArray(child)) {
+          child.forEach(ch => {
+            const stub = fragment.content.querySelector(`[data-id="id-${ch.id}"]`);
+            if (!stub)
+              return;
+            stub.replaceWith(ch.getContent());
+          })
+        }
+        else {
+          const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
 
-        if (!stub)
-          return;
+          if (!stub)
+            return;
 
-        stub.replaceWith(child.getContent());
-      })
+          stub.replaceWith(child.getContent());
+        }
+      })  
+
      
       return fragment.content;
     }
@@ -137,16 +161,34 @@ export default class Block {
     _render() {
       const fragment = this.render();
 
-      const newElement = fragment.firstElementChild as HTMLElement;
+      let newElement: HTMLElement;
 
+      if (fragment.children.length > 1){
+        // создаем <div>, вешаем на него события и ниже апендим прицепом потомков
+        newElement = document.createElement('div');
+      } else {
+        newElement = fragment.firstElementChild as HTMLElement;
+      }
+
+      if(this.props.className)
+          newElement.classList.add(this.props.className);
+        
       if(this._element){
         this._removeEvents();
         this._element.replaceWith(newElement)
       }
-
-      this._element = newElement; 
+      else 
+        this._element = newElement; 
 
       this._addEvents();  
+
+      if (fragment.children.length > 1){
+        // апендим чайлдов к диву
+        const len: number = fragment.children.length;
+        for (let i = 0; i < len; i++){
+          this._element.append(fragment.children[0]);
+        }
+      }
     }
   
       // Может переопределять пользователь, необязательно трогать

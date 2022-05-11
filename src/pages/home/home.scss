@@ -1,0 +1,12 @@
+.home {
+    &__body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        height: 100vh;
+    }
+    &__link {
+        font-size: 15pt;
+    }
+}
