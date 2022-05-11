@@ -9,8 +9,8 @@ export default (indexPages : Array<Array<string>>) : Block => {
 
     props.link = indexPages.map(item => {
         return new Link({
-            link: item[0],
-            text: item[1],
+            link: item[1],
+            text: item[0],
             className: "home__link"
         });
     });

@@ -56,6 +56,21 @@ const router : Record<string, Block> = {
     home: Home(state.indexPages),
     404: ErrorPage(state.error404),
     500: ErrorPage(state.error500),
+    login: Login(state.user)
 }
 
-renderDom('app', router['home'], router);
+const root = renderDom('app', router['home']);
+
+root.addEventListener('click', handler);
+
+function handler(event){
+    event.preventDefault();
+    const route = event.target.attributes[0]['nodeValue'];
+    Object.keys(router).forEach(r => {
+        if (r == route){
+            renderDom('app', router[route]);
+            return;
+        }
+    })
+    
+}

@@ -88,7 +88,7 @@ export default class Block {
 
       const htmlString = template(context);
 
-      const htmlStringNoCommas = htmlString.replace(/,/g, '');
+      const htmlStringNoCommas = htmlString.replace(/>,</g, '><');
 
       fragment.innerHTML = htmlStringNoCommas;
 
