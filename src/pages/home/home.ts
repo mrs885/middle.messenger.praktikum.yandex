@@ -3,55 +3,33 @@ import template from './home.hbs'
 import { Link } from '../../components/Link/link';
 import "./home.scss";
 
-export default (props : any) : Block => {
+export default (indexPages : Array<Array<string>>) : Block => {
     
+    let props : Record<string, Block[] | Block> = {};
+
+    props.link = indexPages.map(item => {
+        return new Link({
+            link: item[0],
+            text: item[1],
+            className: "home__link"
+        });
+    });
+
     class HomePage extends Block{
-        constructor() {
-            super();
+        constructor(props: Record<string, Block[] | Block>) {
+            super(props);
         }
     
         protected initChildren(): void {
-            this.children.link = [ 
-            new Link ({
-                link: "ya.ru",
-                text: "YA!!",
-                className: "home__link",
-                }),
-            new Link ({
-                link: "mail.ru",
-                text: "MAIL",
-                className: "home__link",
-                events: {
-                    focus: (event: Event) => {
-                        console.log('link focused!');
-                    }
-                },
-            }),
-            ]
-        }
-
-        protected initProps(): void {
-             this.props.className = 'home__body'
-             this.props.enevts = {
-                 focus: () => console.log('Homege triggered!')
-             }
+            this.children.link = props.link;
         }
     
         render() {
-            return this.compile(template, { });
+            return this.compile(template, {...this});
         }
     }
     
-    const homePage = new HomePage();     
-
-    // let page = '';
-
-    // props.forEach((item) => {
-    //     page += temp({
-    //         link: item[1],
-    //         text: item[0]
-    //     })
-    // });
+    const homePage = new HomePage(props);     
 
     return homePage
 }

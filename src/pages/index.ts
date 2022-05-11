@@ -1,6 +1,6 @@
 export {default as Home} from "./home/home"
 export {default as Login} from "./login/login"
 export {default as Signin} from "./signin/signin"
-export {default as ErrorP} from "./error/error"
+export {default as ErrorPage} from "./error/error"
 export {default as Profile} from "./profile/profile"
 export {default as Main} from "./main/main"

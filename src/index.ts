@@ -1,6 +1,6 @@
-import home from "./pages/home/home";
-import {Home, Login, Signin, ErrorP, Profile, Main} from "./pages/index"
+import {Home, Login, Signin, ErrorPage, Profile, Main} from "./pages/index"
 import Block from "./utils/block";
+import { Link } from "./components/Link/link";
 import { renderDom } from "./utils/renderDom";
 
 const state = {
@@ -24,14 +24,20 @@ const state = {
     error404: {
         title: "404",
         message: "Не туда попали",
-        href: "home",
-        link: "Назад к чатам"
+        link: new Link({
+            link: "home",
+            text: "Назад к чатам",
+            className: 'error__link',
+        }),
     },
     error500: {
         title: "500",
         message: "Мы уже фиксим",
-        href: "home",
-        link: "Назад к чатам"
+        link: new Link({
+            link: "home",
+            text: "Назад к чатам",
+            className: 'error__link',
+        }),
     }
 }
 
@@ -48,19 +54,8 @@ const state = {
 
 const router : Record<string, Block> = {
     home: Home(state.indexPages),
+    404: ErrorPage(state.error404),
+    500: ErrorPage(state.error500),
 }
 
-renderDom('app', router.home);
-
-//const app: HTMLElement = document.getElementById('app')
-
-// app.innerHTML = Home(state.indexPages)
-
-// app.onclick = handler
-
-// function handler(event){
-//     event.preventDefault()
-
-//     let route = event.target.attributes[0]['nodeValue']
-//     app.innerHTML = router[route]
-// }
+renderDom('app', router['home'], router);

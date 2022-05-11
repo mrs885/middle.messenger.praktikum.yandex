@@ -88,7 +88,9 @@ export default class Block {
 
       const htmlString = template(context);
 
-      fragment.innerHTML = htmlString;
+      const htmlStringNoCommas = htmlString.replace(/,/g, '');
+
+      fragment.innerHTML = htmlStringNoCommas;
 
       Object.entries(this.children).forEach(([key, child]) => {
         if(Array.isArray(child)) {

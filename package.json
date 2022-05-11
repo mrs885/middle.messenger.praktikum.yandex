@@ -6,7 +6,6 @@
     "build": "parcel build ./static/index.html --public-url .",
     "start": "npm run build && npm run serve",
     "dev": "parcel serve ./static/*.html --port 3000",
-    "test": "parcel ./static/index-test.html --port 3000",
     "serve": "node ./src/server.ts"
   },
   "repository": {
