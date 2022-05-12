@@ -1,6 +1,7 @@
 import "./login.scss"
 import Block from '../../utils/block'
 import template from './login.hbs'
+import state from "../../utils/state"
 
 export default (props: any) : Block => {
     
@@ -13,8 +14,10 @@ export default (props: any) : Block => {
             return this.compile(template, {...this.props});
         }
     }
+
+    const loginProps = {...props, ...state.user}
     
-    const loginPage = new LoginPage(props);   
+    const loginPage = new LoginPage(loginProps);   
     
     return loginPage;
 }

@@ -1,7 +1,6 @@
 import "./error.scss"
 import Block from '../../utils/block'
 import template from './error.hbs'
-import { Link } from '../../components/Link/link';
 
 export default (props: any) : Block => {
     

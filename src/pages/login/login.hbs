@@ -5,28 +5,22 @@
                 Вход
             </div>
             <div class="login__field text-field">
-                <input class="text-field__input" type="text" placeholder="Логин" value="{{login}}">
-                </input>
-                <div class="text-field__label">Логин</div>
-                <div class="text-field__helper">&nbsp;</div>
+                {{{input-login}}}
+                {{{label-login}}}
+                {{{login-helper}}}
             </div>
             <div class="login__field text-field">
-                <input class="text-field__input" type="password" placeholder="Пароль" value="{{password}}">
-                </input>
-                <div class="text-field__label">Пароль</div>
-                <div class="text-field__helper">неверный пароль</div>
+                {{{input-password}}}
+                {{{label-password}}}
+                {{{password-helper}}}
             </div>
         </div>
         <div class="login__footer">
             <div class="login__button-auth">
-                <button pathname="home" class="butt">
-                    {{authButtName}}
-                </button>
+                {{{login-button}}}
             </div>
             <div class="login__no-account link">
-                <a href="home">
-                    Нет аккаунта?
-                </a>
+                {{{link-no-account}}}
             </div>
         </div>
     </div>    

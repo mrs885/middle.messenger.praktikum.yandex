@@ -1,18 +1,13 @@
 import {Home, Login, Signin, ErrorPage, Profile, Main} from "./pages/index"
 import Block from "./utils/block";
 import { Link } from "./components/Link/link";
+import { Input } from "./components/Input/input";
+import { Label } from "./components/Label/label";
+import { Button } from "./components/Button/button";
 import { renderDom } from "./utils/renderDom";
+import state from "./utils/state";
 
-const state = {
-    user: {
-        login: "admin",
-        password: "12345",
-        email: "ivan@yandex.ru",
-        firstName: "Ivan",
-        lastName: "Ivanov",
-        authButtName: "Авторизоваться",
-        regButtName: "Зарегистрироваться",
-    },
+const pageCreator = {
     indexPages: [
         ['404', '404'],
         ['500', '500'],
@@ -38,6 +33,58 @@ const state = {
             text: "Назад к чатам",
             className: 'error__link',
         }),
+    },
+    login: {
+        "input-login": new Input({
+            className: "text-field__input",
+            inputType: "text",
+            inputPlaceholder: "Логин",
+            value: state.user.login,
+            events: {
+                input: (e) => {
+                    state.user.login = (e.target as HTMLInputElement).value;
+                    console.log(state);
+                }
+            }
+        }),
+        "label-login": new Label({
+            className: "text-field__label",
+            value: "Логин",
+        }),
+        "login-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "input-password": new Input({
+            className: "text-field__input",
+            inputType: "password",
+            inputPlaceholder: "Пароль",
+            value: state.user.password
+        }),
+        "label-password": new Label({
+            className: "text-field__label",
+            value: "Пароль",
+        }),
+        "password-helper": new Label({
+            className: "text-field__helper",
+            value: "неверный пароль",
+        }),
+        "login-button": new Button ({
+            label: "Авторизоваться",
+            events: {
+                click: (e) => {
+                    e.stopPropagation();
+                    pageCreator.login["input-login"].setProps({
+                        value: '123'
+                    })
+                    console.log(pageCreator.login["input-login"])
+                }
+            }
+        }),
+        "link-no-account": new Link({
+            link: "home",
+            text: "Нет аккаунта?",
+        }),
     }
 }
 
@@ -53,10 +100,10 @@ const state = {
 
 
 const router : Record<string, Block> = {
-    home: Home(state.indexPages),
-    404: ErrorPage(state.error404),
-    500: ErrorPage(state.error500),
-    login: Login(state.user)
+    home: Home(pageCreator.indexPages),
+    404: ErrorPage(pageCreator.error404),
+    500: ErrorPage(pageCreator.error500),
+    login: Login(pageCreator.login)
 }
 
 const root = renderDom('app', router['home']);
