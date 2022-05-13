@@ -1,6 +1,6 @@
 import Block from '../../utils/block'
 import template from './home.hbs'
-import { Link } from '../../components/Link/link';
+import { DivLink } from '../../components/Link/divlink';
 import "./home.scss";
 
 export default (indexPages : Array<Array<string>>) : Block => {
@@ -8,7 +8,7 @@ export default (indexPages : Array<Array<string>>) : Block => {
     let props : Record<string, Block[] | Block> = {};
 
     props.link = indexPages.map(item => {
-        return new Link({
+        return new DivLink({
             link: item[1],
             text: item[0],
             className: "home__link"
@@ -18,10 +18,6 @@ export default (indexPages : Array<Array<string>>) : Block => {
     class HomePage extends Block{
         constructor(props: Record<string, Block[] | Block>) {
             super(props);
-        }
-    
-        protected initChildren(): void {
-            this.children.link = props.link;
         }
     
         render() {

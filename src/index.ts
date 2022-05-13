@@ -22,7 +22,6 @@ const pageCreator = {
         link: new Link({
             link: "home",
             text: "Назад к чатам",
-            className: 'error__link',
         }),
     },
     error500: {
@@ -31,7 +30,6 @@ const pageCreator = {
         link: new Link({
             link: "home",
             text: "Назад к чатам",
-            className: 'error__link',
         }),
     },
     login: {

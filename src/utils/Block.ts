@@ -181,18 +181,11 @@ export default class Block {
       if(this._element){
         this._removeEvents();
 
-        
-        // for(let i = 0; i < newElement.attributes.length; i++){
-        //   const attr = newElement.attributes[i].name;
-        //   this._element.setAttribute(attr, newElement.getAttribute(attr));
-        // }
- 
         this._element.replaceWith(newElement);
         const newDomElement = document.getElementById(this.id);
 
         this._element.innerHTML = '';
         this._element = newDomElement;
-
       }
       else {
         this._element = newElement; 
