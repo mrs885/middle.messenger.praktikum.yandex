@@ -43,7 +43,6 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.login = (e.target as HTMLInputElement).value;
-                    console.log(state);
                 }
             }
         }),
@@ -74,10 +73,10 @@ const pageCreator = {
             events: {
                 click: (e) => {
                     e.stopPropagation();
+                    state.user.login = '123';
                     pageCreator.login["input-login"].setProps({
-                        value: '123'
-                    })
-                    console.log(pageCreator.login["input-login"])
+                        value: state.user.login
+                    });
                 }
             }
         }),
@@ -105,6 +104,9 @@ const router : Record<string, Block> = {
     500: ErrorPage(pageCreator.error500),
     login: Login(pageCreator.login)
 }
+
+const newWindow = window as any;
+newWindow.user = state.user;
 
 const root = renderDom('app', router['home']);
 

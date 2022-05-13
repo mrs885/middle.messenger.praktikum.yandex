@@ -154,6 +154,7 @@ export default class Block {
         return;
       }
       Object.assign(this.props, nextProps);
+
     };
   
     get element() {
@@ -172,17 +173,30 @@ export default class Block {
         newElement = fragment.firstElementChild as HTMLElement;
       }
 
+      newElement.setAttribute('id', this.id);
+
       if(this.props.className)
           newElement.classList.add(this.props.className);
         
       if(this._element){
         this._removeEvents();
-        this._element.replaceWith(newElement)
-      }
-      else 
-        this._element = newElement; 
 
-      this._addEvents();  
+        
+        // for(let i = 0; i < newElement.attributes.length; i++){
+        //   const attr = newElement.attributes[i].name;
+        //   this._element.setAttribute(attr, newElement.getAttribute(attr));
+        // }
+ 
+        this._element.replaceWith(newElement);
+        const newDomElement = document.getElementById(this.id);
+
+        this._element.innerHTML = '';
+        this._element = newDomElement;
+
+      }
+      else {
+        this._element = newElement; 
+      }
 
       if (fragment.children.length > 1){
         // апендим чайлдов к диву
@@ -191,6 +205,9 @@ export default class Block {
           this._element.append(fragment.children[0]);
         }
       }
+      
+      this._addEvents();
+
     }
   
       // Может переопределять пользователь, необязательно трогать
