@@ -73,16 +73,161 @@ const pageCreator = {
             events: {
                 click: (e) => {
                     e.stopPropagation();
-                    state.user.login = '123';
-                    pageCreator.login["input-login"].setProps({
-                        value: state.user.login
-                    });
+                    console.log('Login clicked');
                 }
             }
         }),
         "link-no-account": new Link({
             link: "home",
             text: "Нет аккаунта?",
+        }),
+    },
+    signin: {
+        "input-email": new Input({
+            className: "text-field__input",
+            inputType: "text",
+            inputPlaceholder: "Почта",
+            value: state.user.email,
+            events: {
+                input: (e) => {
+                    state.user.email = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-email": new Label({
+            className: "text-field__label",
+            value: "Почта",
+        }),
+        "email-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "input-login": new Input({
+            className: "text-field__input",
+            inputType: "text",
+            inputPlaceholder: "Логин",
+            value: state.user.login,
+            events: {
+                input: (e) => {
+                    state.user.login = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-login": new Label({
+            className: "text-field__label",
+            value: "Логин",
+        }),
+        "login-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "input-name": new Input({
+            className: "text-field__input",
+            inputType: "text",
+            inputPlaceholder: "Имя",
+            value: state.user.firstName,
+            events: {
+                input: (e) => {
+                    state.user.firstName = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-name": new Label({
+            className: "text-field__label",
+            value: "Имя",
+        }),
+        "name-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "input-lastname": new Input({
+            className: "text-field__input",
+            inputType: "text",
+            inputPlaceholder: "Фамилия",
+            value: state.user.lastName,
+            events: {
+                input: (e) => {
+                    state.user.lastName = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-lastname": new Label({
+            className: "text-field__label",
+            value: "Фамилия",
+        }),
+        "lastname-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "input-tel": new Input({
+            className: "text-field__input",
+            inputType: "tel",
+            inputPlaceholder: "Телефон",
+            value: state.user.tel,
+            events: {
+                input: (e) => {
+                    state.user.tel = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-tel": new Label({
+            className: "text-field__label",
+            value: "Телефон",
+        }),
+        "tel-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "input-pass": new Input({
+            className: "text-field__input",
+            inputType: "password",
+            inputPlaceholder: "Пароль",
+            value: state.user.password,
+            events: {
+                input: (e) => {
+                    state.user.password = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-pass": new Label({
+            className: "text-field__label",
+            value: "Пароль",
+        }),
+        "pass-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "input-pass2": new Input({
+            className: "text-field__input",
+            inputType: "password",
+            inputPlaceholder: "Пароль",
+            value: state.user.password2,
+            events: {
+                input: (e) => {
+                    state.user.password2 = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-pass2": new Label({
+            className: "text-field__label",
+            value: "Пароль еще раз  ",
+        }),
+        "pass2-helper": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
+        "signin-button": new Button ({
+            label: "Зарегистрироваться",
+            events: {
+                click: (e) => {
+                    e.stopPropagation();
+                    console.log('Register clicked');
+                }
+            }
+        }),
+        "link-no-account": new Link({
+            link: "home",
+            text: "Войти",
         }),
     }
 }
@@ -102,7 +247,8 @@ const router : Record<string, Block> = {
     home: Home(pageCreator.indexPages),
     404: ErrorPage(pageCreator.error404),
     500: ErrorPage(pageCreator.error500),
-    login: Login(pageCreator.login)
+    login: Login(pageCreator.login),
+    signin: Signin(pageCreator.signin)
 }
 
 const newWindow = window as any;
