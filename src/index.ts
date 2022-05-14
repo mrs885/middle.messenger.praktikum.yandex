@@ -10,6 +10,7 @@ import state from "./utils/state";
 
 import logoImg from "../static/blank-img.png"
 import backImg from "../static/back.png"
+import { Break } from "./components/Break/break";
 
 const pageCreator = {
     indexPages: [
@@ -335,6 +336,23 @@ const pageCreator = {
         "label-tel": new Label({
             className: "text-field-wide__label",
             value: "Телефон",
+        }),
+        "link-changedata": new Link({
+            link: "home",
+            text: "Изменить данные",
+            className: "text-field-wide__link_normal",
+        }),
+        "break1": new Break({}),
+        "link-changepassword": new Link({
+            link: "home",
+            text: "Изменить пароль",
+            className: "text-field-wide__link_normal",
+        }),
+        "break2": new Break({}),
+        "link-exit": new Link({
+            link: "home",
+            text: "Выйти",
+            className: "text-field-wide__link_red",
         }),
     },
 }
