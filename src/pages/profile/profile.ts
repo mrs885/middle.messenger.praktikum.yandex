@@ -1,9 +1,23 @@
-import temp from './profile.hbs'
-import logo from "../../../static/blank-img.png"
-import back from "../../../static/back.png"
 import "./profile.scss"
+import Block from '../../utils/block'
+import template from './profile.hbs'
+import state from "../../utils/state"
 
-export default (props) => {
+export default (props: any) : Block => {
+    
+    class ProfilePage extends Block{
+        constructor(props) {
+            super(props);
+        }
+    
+        render() {
+            return this.compile(template, {...this.props});
+        }
+    }
 
-    return temp({...props, logo, back})
+    const profileProps = {...props, ...state.user}
+    
+    const profilePage = new ProfilePage(profileProps);   
+    
+    return profilePage;
 }

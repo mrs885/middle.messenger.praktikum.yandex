@@ -4,8 +4,12 @@ import { Link } from "./components/Link/link";
 import { Input } from "./components/Input/input";
 import { Label } from "./components/Label/label";
 import { Button } from "./components/Button/button";
+import { Image } from "./components/Image/image";
 import { renderDom } from "./utils/renderDom";
 import state from "./utils/state";
+
+import logoImg from "../static/blank-img.png"
+import backImg from "../static/back.png"
 
 const pageCreator = {
     indexPages: [
@@ -227,7 +231,112 @@ const pageCreator = {
             link: "home",
             text: "Войти",
         }),
-    }
+    },
+    profile: {
+        "image-back": new Image({
+            "src": backImg,
+            className: "butt-round",
+        }),
+        "image-logo": new Image({
+            "src": logoImg,
+            className: "header-logo__img",
+        }),
+        "label-firstname": new Label({
+            className: "header-logo__txt",
+            value: state.user.firstName,
+        }),
+        "input-email": new Input({
+            className: "text-field-wide__input",
+            inputType: "email",
+            inputPlaceholder: "email",
+            value: state.user.email,
+            events: {
+                input: (e) => {
+                    state.user.email = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-email": new Label({
+            className: "text-field-wide__label",
+            value: "Почта",
+        }),
+        "input-login": new Input({
+            className: "text-field-wide__input",
+            inputType: "text",
+            inputPlaceholder: "login",
+            value: state.user.login,
+            events: {
+                input: (e) => {
+                    state.user.login = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-login": new Label({
+            className: "text-field-wide__label",
+            value: "Логин",
+        }),
+        "input-firstname": new Input({
+            className: "text-field-wide__input",
+            inputType: "text",
+            inputPlaceholder: "Имя",
+            value: state.user.firstName,
+            events: {
+                input: (e) => {
+                    state.user.firstName = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label2-firstname": new Label({
+            className: "text-field-wide__label",
+            value: "Имя",
+        }),
+        "input-lastname": new Input({
+            className: "text-field-wide__input",
+            inputType: "text",
+            inputPlaceholder: "Фамилия",
+            value: state.user.lastName,
+            events: {
+                input: (e) => {
+                    state.user.lastName = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-lastname": new Label({
+            className: "text-field-wide__label",
+            value: "Фамилия",
+        }),
+        "input-chatname": new Input({
+            className: "text-field-wide__input",
+            inputType: "text",
+            inputPlaceholder: "Имя в чате",
+            value: state.user.chatName,
+            events: {
+                input: (e) => {
+                    state.user.chatName = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-chatname": new Label({
+            className: "text-field-wide__label",
+            value: "Имя в чате",
+        }),
+        "input-tel": new Input({
+            className: "text-field-wide__input",
+            inputType: "tel",
+            pattern: "[0-9]{3}-[0-9]{3}-[0-9]{4}",
+            inputPlaceholder: "Телефон",
+            value: state.user.tel,
+            events: {
+                input: (e) => {
+                    state.user.tel = (e.target as HTMLInputElement).value;
+                }
+            }
+        }),
+        "label-tel": new Label({
+            className: "text-field-wide__label",
+            value: "Телефон",
+        }),
+    },
 }
 
 // const router = {
@@ -246,7 +355,8 @@ const router : Record<string, Block> = {
     404: ErrorPage(pageCreator.error404),
     500: ErrorPage(pageCreator.error500),
     login: Login(pageCreator.login),
-    signin: Signin(pageCreator.signin)
+    signin: Signin(pageCreator.signin),
+    profile: Profile(pageCreator.profile),
 }
 
 const newWindow = window as any;

@@ -5,6 +5,7 @@ interface InputProps{
   value?: string,
   className?: string,
   inputType?: string,
+  pattern?: string,
   inputPlaceholder?: string,
   events?: {
     click?: (e?: any) => void,

@@ -6,6 +6,7 @@ const state = {
         email: "ivan@yandex.ru",
         firstName: "Ivan",
         lastName: "Ivanov",
+        chatName: "Bad-Boy",
         tel: "",
     }
 }
