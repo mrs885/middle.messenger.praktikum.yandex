@@ -10,7 +10,11 @@ import state from "./utils/state";
 
 import logoImg from "../static/blank-img.png"
 import backImg from "../static/back.png"
+import findImg from "../static/find.png"
+import greyImg from "../static/grey.png"
 import { Break } from "./components/Break/break";
+import { MessageBox } from "./components/MessageBox/messagebox";
+import { DivLink } from "./components/Link/divlink";
 
 const pageCreator = {
     indexPages: [
@@ -355,18 +359,58 @@ const pageCreator = {
             className: "text-field-wide__link_red",
         }),
     },
+    main: {
+        "link-profile": new DivLink({
+            link: "home",
+            text: "Профиль >",
+            className: "link-profile",
+        }),
+        "input-find": new Input({
+            className: "text-field-input__find",
+            inputType: "text",
+            inputPlaceholder: "Поиск",
+            value: "",
+            events: {
+                input: (e) => {
+                    console.log((e.target as HTMLInputElement).value);
+                }
+            }
+        }),
+        "image-find": new Image({
+            "src": findImg,
+            className: "text-field-image__find",
+        }),
+        messageBoxes: [],
+    },
 }
 
-// const router = {
-//     login: Login(state.user),
-//     signin: Signin(state.user),
-//     404: ErrorP(state.error404),
-//     500: ErrorP(state.error500),
-//     profile: Profile(state.user),
-//     home: Home(state.indexPages),
-//     main: Main(),
-// }
+let mBoxes: Array<Block> = [];
 
+for (let i = 0; i < 7; i++){
+    
+    const newMessageBox = new MessageBox({
+        header: `Box-${i}`,
+        "is-active": "active-false",
+        break: new Break({}),
+        className: "messagebox",
+        "image-user": new Image({
+            src: greyImg,
+            className: "image-user",    
+        }),
+        events: {
+            click: () => {
+                console.log("msg clicked!");
+                newMessageBox.setProps({
+                     "is-active": "active-true"
+                });
+            }
+        },
+    });
+    
+    mBoxes.push(newMessageBox);
+}
+
+pageCreator.main.messageBoxes = mBoxes;
 
 const router : Record<string, Block> = {
     home: Home(pageCreator.indexPages),
@@ -375,6 +419,7 @@ const router : Record<string, Block> = {
     login: Login(pageCreator.login),
     signin: Signin(pageCreator.signin),
     profile: Profile(pageCreator.profile),
+    main: Main(pageCreator.main),
 }
 
 const newWindow = window as any;

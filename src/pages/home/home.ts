@@ -7,7 +7,7 @@ export default (indexPages : Array<Array<string>>) : Block => {
     
     let props : Record<string, Block[] | Block> = {};
 
-    props.link = indexPages.map(item => {
+    props.links = indexPages.map(item => {
         return new DivLink({
             link: item[1],
             text: item[0],

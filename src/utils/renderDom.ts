@@ -8,7 +8,7 @@ export function renderDom(rootSelector: string, component: Block) : HTMLElement{
         throw new Error ("нет Root!")
     }
 
-    //component.dispatchComponentDidMoun();
+    component.dispatchComponentDidMoun();
 
     root.innerHTML = '';    
 

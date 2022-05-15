@@ -128,7 +128,7 @@ color: transparent;
 
 .text-field-wide__container{
     position: relative;
-    margin: 0 auto;
+    margin: 5px auto;
     width: 70%;
     max-width: 450px;
     min-width: 300px;
@@ -173,6 +173,7 @@ color: transparent;
     left: 10px;
     border: none;
 	border-bottom: 1px solid $color-dash;
+    margin: 1px 0 1px 0;
 }
 
 .butt{
