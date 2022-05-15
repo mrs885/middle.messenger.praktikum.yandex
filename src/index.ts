@@ -400,9 +400,12 @@ for (let i = 0; i < 7; i++){
         events: {
             click: () => {
                 console.log("msg clicked!");
+                mBoxes.forEach( item => item.setProps({
+                    "is-active": "active-false"
+                }));
                 newMessageBox.setProps({
-                     "is-active": "active-true"
-                });
+                    "is-active": "active-true"
+               });
             }
         },
     });
