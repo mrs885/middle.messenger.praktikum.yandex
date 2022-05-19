@@ -13,8 +13,9 @@ import backImg from "../static/back.png"
 import findImg from "../static/find.png"
 import greyImg from "../static/grey.png"
 import { Break } from "./components/Break/break";
-import { MessageBox } from "./components/MessageBox/messagebox";
+import { MessageBox } from "./components/MessageBox/messageBox";
 import { DivLink } from "./components/Link/divlink";
+import { ChatHead } from "./components/ChatHead/chatHead";
 
 const pageCreator = {
     indexPages: [
@@ -381,15 +382,18 @@ const pageCreator = {
             className: "text-field-image__find",
         }),
         messageBoxes: [],
+        chatHead: new ChatHead({
+            className: "main__right-area",
+        }),
     },
 }
 
 let mBoxes: Array<Block> = [];
 
-for (let i = 0; i < 7; i++){
+for (let i = 1; i < 7; i++){
     
     const newMessageBox = new MessageBox({
-        header: `Box-${i}`,
+        chatId: i,
         "is-active": "active-false",
         break: new Break({}),
         className: "messagebox",
@@ -399,7 +403,9 @@ for (let i = 0; i < 7; i++){
         }),
         events: {
             click: () => {
-                console.log("msg clicked!");
+                pageCreator.main.chatHead.setProps({
+                    "chatId": i
+                })
                 mBoxes.forEach( item => item.setProps({
                     "is-active": "active-false"
                 }));

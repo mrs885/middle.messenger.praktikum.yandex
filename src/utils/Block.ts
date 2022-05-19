@@ -154,7 +154,6 @@ export default class Block {
         return;
       }
       Object.assign(this.props, nextProps);
-
     };
   
     get element() {
@@ -173,19 +172,14 @@ export default class Block {
         newElement = fragment.firstElementChild as HTMLElement;
       }
 
-      newElement.setAttribute('id', this.id);
-
       if(this.props.className)
           newElement.classList.add(this.props.className);
         
       if(this._element){
         this._removeEvents();
-
         this._element.replaceWith(newElement);
-        const newDomElement = document.getElementById(this.id);
-
         this._element.innerHTML = '';
-        this._element = newDomElement;
+        this._element = newElement;
       }
       else {
         this._element = newElement; 

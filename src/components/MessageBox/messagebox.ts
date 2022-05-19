@@ -1,11 +1,10 @@
-import "./messagebox.scss";
+import "./messageBox.scss";
 import Block from "../../utils/block";
-import { Break } from "../Break/break";
-import template from "./messagebox.hbs";
+import template from "./messageBox.hbs";
 
 interface MessageBoxProps{
-  header: string,
   "is-active": string,
+  chatId: number,
   break?: Block,
   className?: string,
   "image-user"?: Block,

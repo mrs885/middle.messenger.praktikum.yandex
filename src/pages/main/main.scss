@@ -34,6 +34,12 @@ $color-background-right: rgb(255, 255, 255);
         width: 100%;
         padding: 5px;
     }
+    &__right-area-empty {
+        display: flex;
+        justify-content: center;
+        text-align: center;
+        color: gray;
+    }
     &__right-area-header {
         height: 30px;
         border-bottom-width: 1px;
