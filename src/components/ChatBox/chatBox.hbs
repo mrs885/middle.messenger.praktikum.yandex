@@ -1,4 +1,9 @@
-<div class="chat-box">
-    Наш чатик!
-    {{chatId}}
-</div>
+{{#if hasChatItems}}
+    <div>
+        {{{chatItems}}}
+    </div>
+{{else}}
+    <div class="main__right-area-empty">
+        В выбранном чате еще нет сообщений
+    </div>
+{{/if}}

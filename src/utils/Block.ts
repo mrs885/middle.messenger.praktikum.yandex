@@ -185,6 +185,7 @@ export default class Block {
         this._element = newElement; 
       }
 
+
       if (fragment.children.length > 1){
         // апендим чайлдов к диву
         const len: number = fragment.children.length;
@@ -192,7 +193,7 @@ export default class Block {
           this._element.append(fragment.children[0]);
         }
       }
-      
+
       this._addEvents();
 
     }

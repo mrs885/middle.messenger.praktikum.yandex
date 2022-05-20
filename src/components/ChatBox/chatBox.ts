@@ -1,9 +1,8 @@
 import "./chatBox.scss";
 import Block from "../../utils/block";
 import state from "../../utils/state";
-//import template from "./chatBox.hbs";
-
-
+import { ChatItem } from "../ChatItem/chatItem";
+import template from "./chatBox.hbs";
 
 interface ChatBoxProps{
   chatId?: number,
@@ -27,14 +26,19 @@ export class ChatBox extends Block{
         `; 
     };
 
+    protected hasChatItems: boolean;
+
     componentDidUpdate(oldProps: any, newProps: any): boolean {
         // здесь надо перегенерить шаблон
+        this.children = {
+            chatItems: []
+        };
+        const chatItems = [];
         const templateBlocks = [];
         let chat = state.chats.find(chat => (chat.chatId === this.props.chatId));
         if(chat){
             // формируем сообщения
             let i = 0, j = 0;
-            let startDate = new Date(2000, 1, 1);
             while (i < chat.from.length || j < chat.to.length){
                 let curdate: Date;
                 let curText: string;
@@ -50,21 +54,29 @@ export class ChatBox extends Block{
                     curPosition = 'message-left';
                     i++;
                 } 
-                templateBlocks.push(`<div class=${curPosition}>${curdate.getFullYear()}.${curdate.getMonth()}.${curdate.getDate()} ${curdate.getHours()}:${curdate.getMinutes()} - ${curText}</div>`)
+                chatItems.push(
+                    new ChatItem({
+                        message: curText,
+                        year: curdate.getFullYear().toString(),
+                        month: curdate.getMonth().toString(),
+                        date: curdate.getDate().toString(),
+                        hour: curdate.getHours().toString(),
+                        minute: curdate.getMinutes().toString(),
+                        className: curPosition,
+                    })
+                )
             }
-            this.template = () => templateBlocks.join();
+            this.children.chatItems = chatItems;
+            this.hasChatItems = true;
+
         } else {
-            this.template = () => (`
-                <div class="main__right-area-empty">
-                    В выбранном чате еще нет сообщений
-                </div>
-                `);
+            this.hasChatItems = false;
         }
 
         return true;
     }
 
     render() {
-        return this.compile(this.template, {...this.props});
+        return this.compile(template, {...this.props, hasChatItems: this.hasChatItems});
     }
 }
