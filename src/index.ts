@@ -15,7 +15,7 @@ import greyImg from "../static/grey.png"
 import { Break } from "./components/Break/break";
 import { MessageBox } from "./components/MessageBox/messageBox";
 import { DivLink } from "./components/Link/divlink";
-import { ChatHead } from "./components/ChatHead/chatHead";
+import { ChatParent } from "./components/ChatParent/chatParent";
 
 const pageCreator = {
     indexPages: [
@@ -382,7 +382,7 @@ const pageCreator = {
             className: "text-field-image__find",
         }),
         messageBoxes: [],
-        chatHead: new ChatHead({
+        chatParent: new ChatParent({
             className: "main__right-area",
         }),
     },
@@ -397,13 +397,15 @@ for (let i = 1; i < 7; i++){
         "is-active": "active-false",
         break: new Break({}),
         className: "messagebox",
-        "image-user": new Image({
+        userName: state.findChatById(i).chatName,
+        numUnreadMessages: state.numUnreadMessagesById(i),
+        userImage: new Image({  
             src: greyImg,
             className: "image-user",    
         }),
         events: {
             click: () => {
-                pageCreator.main.chatHead.setProps({
+                pageCreator.main.chatParent.setProps({
                     "chatId": i
                 })
                 mBoxes.forEach( item => item.setProps({

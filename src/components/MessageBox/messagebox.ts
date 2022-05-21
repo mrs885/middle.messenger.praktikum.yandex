@@ -7,7 +7,9 @@ interface MessageBoxProps{
   chatId: number,
   break?: Block,
   className?: string,
-  "image-user"?: Block,
+  userImage?: Block,
+  userName?: string,
+  numUnreadMessages?: number,
   events?:{
     click?: () => void;
   }

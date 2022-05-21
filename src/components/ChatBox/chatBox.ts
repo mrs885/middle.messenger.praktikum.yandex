@@ -43,7 +43,17 @@ export class ChatBox extends Block{
                 let curdate: Date;
                 let curText: string;
                 let curPosition: string;
-                if (i == chat.from.length || (chat.from[i].time > chat.to[j].time)){
+                if (i == chat.from.length){
+                    curdate = chat.to[j].time;
+                    curText = chat.to[j].text;
+                    curPosition = 'message-right';
+                    j++;
+                } else if (j == chat.to.length){
+                    curdate = chat.from[i].time;
+                    curText = chat.from[i].text;
+                    curPosition = 'message-left';
+                    i++;
+                } else if (chat.from[i].time > chat.to[j].time) {
                     curdate = chat.to[j].time;
                     curText = chat.to[j].text;
                     curPosition = 'message-right';
@@ -53,7 +63,8 @@ export class ChatBox extends Block{
                     curText = chat.from[i].text;
                     curPosition = 'message-left';
                     i++;
-                } 
+                }
+            
                 chatItems.push(
                     new ChatItem({
                         message: curText,
