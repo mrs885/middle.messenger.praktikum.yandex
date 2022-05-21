@@ -19,9 +19,11 @@
             22:05
         </div>
         <div style="display: flex; flex-direction: row; justify-content: center;">
-            <div class="mb-box-nummessages">
-                {{numUnreadMessages}}
-            </div>
+            {{#if numUnreadMessages}}
+                <div class="mb-box-nummessages">
+                    {{numUnreadMessages}}
+                </div>
+            {{/if}}
         </div>
     </div>
 </div>

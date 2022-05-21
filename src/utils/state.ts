@@ -21,6 +21,17 @@ const chats = [
                 text: "Чем занимаешься?",
                 read: true,
             },
+            {
+                time: new Date(2022, 5, 20, 10, 20),
+                text: "Звучит интригующе.",
+                read: false,
+            },
+            {
+                time: new Date(2022, 5, 20, 10, 40),
+                text: "Завтра приезжай в офис, расскажешь.",
+                read: false,
+            },
+
         ],
         to: [
             {

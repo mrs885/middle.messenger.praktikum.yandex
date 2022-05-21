@@ -4,7 +4,9 @@ import template from "./chatHead.hbs";
 import { ChatBox } from "../ChatBox/chatBox";
 
 interface ChatHeadProps{
-  chatId?: number,
+  chatId: number,
+  avatarImage?: string,
+  chatName?: string,
   className?: string,
   events?:{
     click?: () => void;
@@ -13,20 +15,7 @@ interface ChatHeadProps{
 
 export class ChatHead extends Block{
     constructor(props: ChatHeadProps){
-
-        const chatBox = new ChatBox({
-          chatId: props.chatId  
-        })
-        
-        super( {...props, chatBox});
-    }
-
-    componentDidUpdate(oldProps: any, newProps: any): boolean {
-        // вот тут надо поменять пропсы у ChatBox
-        (this.children.chatBox as ChatBox).setProps({
-            chatId: newProps.chatId
-        });
-        return true;
+        super( {...props});
     }
 
     render() {
