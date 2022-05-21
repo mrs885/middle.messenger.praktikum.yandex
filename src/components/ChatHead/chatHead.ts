@@ -1,11 +1,12 @@
 import "./chatHead.scss";
 import Block from "../../utils/block";
 import template from "./chatHead.hbs";
-import { ChatBox } from "../ChatBox/chatBox";
+import state from "../../utils/state";
+import {Image} from "../Image/image";
 
 interface ChatHeadProps{
   chatId: number,
-  avatarImage?: string,
+  chatAvatar?: Block,
   chatName?: string,
   className?: string,
   events?:{
@@ -16,6 +17,22 @@ interface ChatHeadProps{
 export class ChatHead extends Block{
     constructor(props: ChatHeadProps){
         super( {...props});
+    }
+
+    componentDidUpdate(oldProps: any, newProps: any): boolean {
+      // пришел новый chatId - меняем заголовок
+      if(newProps.chatId != oldProps.chatId){
+        const newChat = state.findChatById(newProps.chatId);
+        this.setProps({
+          chatName : newChat.chatName,
+        });
+        this.children.chatAvatar = new Image({
+          src: newChat.chatAvatar,
+          className: "chat-header__avatar-image",
+        });
+        return true;
+      }
+      return true;
     }
 
     render() {

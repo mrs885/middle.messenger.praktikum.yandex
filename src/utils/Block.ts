@@ -103,7 +103,7 @@ export default class Block {
         }
         else {
           const stub = fragment.content.querySelector(`[data-id="id-${child.id}"]`);
-
+          
           if (!stub)
             return;
 
@@ -172,8 +172,12 @@ export default class Block {
         newElement = fragment.firstElementChild as HTMLElement;
       }
 
-      if(this.props.className)
-          newElement.classList.add(this.props.className);
+      if(this.props.className){
+        const classes = (this.props.className as string).split(' ');
+        classes.forEach(cl => {
+          newElement.classList.add(cl);
+        });
+      }
         
       if(this._element){
         this._removeEvents();

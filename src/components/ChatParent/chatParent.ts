@@ -3,6 +3,7 @@ import Block from "../../utils/block";
 import template from "./chatParent.hbs";
 import { ChatBox } from "../ChatBox/chatBox";
 import { ChatHead } from "../ChatHead/chatHead";
+import { ChatFooter } from "../ChatFooter/chatFooter";
 
 interface ChatParentProps{
   chatId?: number,
@@ -21,8 +22,10 @@ export class ChatParent extends Block{
         const chatBox = new ChatBox({
           chatId: props.chatId, 
         })
+        const chatFooter = new ChatFooter({
+        })
         
-        super( {...props, chatBox, chatHead});
+        super( {...props, chatBox, chatHead, chatFooter});
     }
 
     componentDidUpdate(oldProps: any, newProps: any): boolean {

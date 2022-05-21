@@ -29,7 +29,7 @@ export class ChatBox extends Block{
     protected hasChatItems: boolean;
 
     componentDidUpdate(oldProps: any, newProps: any): boolean {
-        // здесь надо перегенерить шаблон
+        // здесь надо перегенерить элементы чата
         this.children = {
             chatItems: []
         };

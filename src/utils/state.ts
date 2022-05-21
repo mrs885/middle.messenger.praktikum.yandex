@@ -1,3 +1,5 @@
+import greyAvatar from "../../static/grey.png"
+
 type Chat = typeof chats[0];
 type User = typeof state.user;
 
@@ -5,6 +7,7 @@ const chats = [
     {
         chatId: 1,
         chatName: 'Андрей',
+        chatAvatar: greyAvatar,
         from: [
             {
                 time: new Date(2022, 5, 19, 9, 0),
@@ -55,6 +58,7 @@ const chats = [
     {
         chatId: 2,
         chatName: 'Работа',
+        chatAvatar: greyAvatar,
         from: [
             {
                 time: new Date(2022, 5, 18, 9, 0),
@@ -88,6 +92,7 @@ const chats = [
 const dummyChat: Chat = {
     chatId: 0,
     chatName: 'Нет названия',
+    chatAvatar: greyAvatar,
     from: [],
     to: [],
 };
@@ -106,7 +111,7 @@ const state = {
         tel: "",
     },
     chats,
-    findChatById(id: number): ( Chat | undefined) {
+    findChatById(id: number): Chat {
         const result: Chat = state.chats.find(chat => chat.chatId === id);
         return (result ? result : dummyChat);
     },
