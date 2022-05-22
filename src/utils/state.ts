@@ -2,6 +2,7 @@ import greyAvatar from "../../static/grey.png"
 
 type Chat = typeof chats[0];
 type User = typeof state.user;
+type FormData = typeof formData;
 
 const chats = [
     {
@@ -126,7 +127,17 @@ const state = {
         });
         return foundUnread;
     }
-}
+};
 
+export const formData = {
+    loginData: {
+        get login() {
+            return state.user.login;
+        },
+        get password() {
+            return state.user.password;
+        }
+    }
+};
 
 export default state;

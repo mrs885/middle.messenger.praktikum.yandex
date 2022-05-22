@@ -7,6 +7,7 @@ import { Button } from "./components/Button/button";
 import { Image } from "./components/Image/image";
 import { renderDom } from "./utils/renderDom";
 import state from "./utils/state";
+import {formData} from "./utils/state";
 
 import logoImg from "../static/blank-img.png"
 import backImg from "../static/back.png"
@@ -51,7 +52,20 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.login = (e.target as HTMLInputElement).value;
-                }
+                    const checkResult = checkLogin(state.user.login);
+                    if (checkResult != 'ok') {
+                        pageCreator.login["login-helper"].setProps({
+                            value: checkResult,
+                        });
+                    } else {
+                        pageCreator.login["login-helper"].setProps({
+                            value: `&nbsp;`,
+                        });
+                    }
+                },
+                blur: (e) => {
+                    console.log('blured');
+                },
             }
         }),
         "label-login": new Label({
@@ -66,7 +80,15 @@ const pageCreator = {
             className: "text-field__input",
             inputType: "password",
             inputPlaceholder: "Пароль",
-            value: state.user.password
+            value: state.user.password,
+            events: {
+                input: (e) => {
+                    state.user.password = (e.target as HTMLInputElement).value;
+                },
+                blur: (e) => {
+                    console.log('blured');
+                },
+            }
         }),
         "label-password": new Label({
             className: "text-field__label",
@@ -81,7 +103,10 @@ const pageCreator = {
             events: {
                 click: (e) => {
                     e.stopPropagation();
-                    console.log('Login clicked');
+                    console.log(formData.loginData);
+                    pageCreator.login["login-helper"].setProps({
+                        value: "введите корректный логин",
+                    });
                 }
             }
         }),
@@ -450,4 +475,15 @@ function handler(event){
         }
     })
     
+}
+
+function checkLogin(login: string): string{
+    if (login.length < 3)
+        return "введите не менее 3х символов";
+    else if (login.length > 20)
+        return "логин не может превышать 20 символов";
+    else if (/^[0-9]+$/i.test(login))
+        return "логин не может состоять только из цифр"
+    else if(!/^[0-9A-Z-_]+$/i.test(login))
+        return "введите логин на латинице без спецсимволов";
 }

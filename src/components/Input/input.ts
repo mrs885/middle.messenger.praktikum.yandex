@@ -9,7 +9,8 @@ interface InputProps{
   inputPlaceholder?: string,
   events?: {
     click?: (e?: any) => void,
-    input?: (e?: InputEvent) => void
+    input?: (e?: InputEvent) => void,
+    blur?: (e?: Event) => void,
   }
 }
 
