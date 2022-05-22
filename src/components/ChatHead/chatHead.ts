@@ -1,5 +1,5 @@
 import "./chatHead.scss";
-import Block from "../../utils/block";
+import Block from "../../utils/Block";
 import template from "./chatHead.hbs";
 import state from "../../utils/state";
 import {Image} from "../Image/image";

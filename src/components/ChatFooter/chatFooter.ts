@@ -1,5 +1,5 @@
 import "./chatFooter.scss";
-import Block from "../../utils/block";
+import Block from "../../utils/Block";
 import template from "./chatFooter.hbs";
 import {Image} from "../Image/image";
 import attachImg from "../../../static/attach.png"

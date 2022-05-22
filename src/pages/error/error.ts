@@ -1,5 +1,5 @@
 import "./error.scss"
-import Block from '../../utils/block'
+import Block from '../../utils/Block'
 import template from './error.hbs'
 
 export default (props: any) : Block => {

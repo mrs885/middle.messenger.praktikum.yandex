@@ -1,5 +1,5 @@
 import "./main.scss"
-import Block from '../../utils/block'
+import Block from '../../utils/Block'
 import template from './main.hbs'
 import state from "../../utils/state"
 

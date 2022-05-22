@@ -1,5 +1,5 @@
 import "./messageBox.scss";
-import Block from "../../utils/block";
+import Block from "../../utils/Block";
 import template from "./messageBox.hbs";
 
 interface MessageBoxProps{

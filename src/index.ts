@@ -1,5 +1,5 @@
 import {Home, Login, Signin, ErrorPage, Profile, Main} from "./pages/index"
-import Block from "./utils/block";
+import Block from "./utils/Block";
 import { Link } from "./components/Link/link";
 import { Input } from "./components/Input/input";
 import { Label } from "./components/Label/label";

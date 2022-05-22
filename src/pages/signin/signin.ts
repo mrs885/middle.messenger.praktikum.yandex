@@ -1,5 +1,5 @@
 import "./signin.scss"
-import Block from '../../utils/block'
+import Block from '../../utils/Block'
 import template from './signin.hbs'
 import state from "../../utils/state"
 

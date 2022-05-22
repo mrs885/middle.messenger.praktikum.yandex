@@ -1,5 +1,5 @@
 import "./chatBox.scss";
-import Block from "../../utils/block";
+import Block from "../../utils/Block";
 import state from "../../utils/state";
 import { ChatItem } from "../ChatItem/chatItem";
 import template from "./chatBox.hbs";
