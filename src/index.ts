@@ -63,9 +63,6 @@ const pageCreator = {
                         });
                     }
                 },
-                blur: (e) => {
-                    console.log('blured');
-                },
             }
         }),
         "label-login": new Label({
@@ -84,9 +81,16 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.password = (e.target as HTMLInputElement).value;
-                },
-                blur: (e) => {
-                    console.log('blured');
+                    const checkResult = checkPassword(state.user.password);
+                    if (checkResult != 'ok') {
+                        pageCreator.login["password-helper"].setProps({
+                            value: checkResult,
+                        });
+                    } else {
+                        pageCreator.login["password-helper"].setProps({
+                            value: `&nbsp;`,
+                        });
+                    }
                 },
             }
         }),
@@ -96,7 +100,7 @@ const pageCreator = {
         }),
         "password-helper": new Label({
             className: "text-field__helper",
-            value: "неверный пароль",
+            value: `&nbsp;`,
         }),
         "login-button": new Button ({
             label: "Авторизоваться",
@@ -104,9 +108,10 @@ const pageCreator = {
                 click: (e) => {
                     e.stopPropagation();
                     console.log(formData.loginData);
-                    pageCreator.login["login-helper"].setProps({
-                        value: "введите корректный логин",
-                    });
+                    console.log(`проверка логина '${formData.loginData.login}' - `, 
+                        checkLogin(formData.loginData.login) != 'ok' ? 'not ok' : 'ok');
+                    console.log('проверка пароля: ', 
+                        checkPassword(formData.loginData.password) != 'ok' ? 'not ok' : 'ok');
                 }
             }
         }),
@@ -486,4 +491,19 @@ function checkLogin(login: string): string{
         return "логин не может состоять только из цифр"
     else if(!/^[0-9A-Z-_]+$/i.test(login))
         return "введите логин на латинице без спецсимволов";
+    else
+        return 'ok';
+}
+
+function checkPassword(password: string): string{
+    if (password.length < 8)
+        return "введите не менее 8 символов";
+    else if (password.length > 40)
+        return "пароль не может превышать 40 символов";
+    else if (!/\d{1}/.test(password))
+        return "должна быть хотя бы одна цифра";
+    else if(!/[A-ZА-Я]/.test(password))
+        return "должна быть хотябы одна заглавная буква";
+    else
+        return 'ok';
 }

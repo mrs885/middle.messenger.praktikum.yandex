@@ -103,7 +103,7 @@ chats.push(dummyChat);
 const state = {
     user: {
         login: "admin",
-        password: "12345",
+        password: "",
         password2: "",
         email: "ivan@yandex.ru",
         firstName: "Ivan",
