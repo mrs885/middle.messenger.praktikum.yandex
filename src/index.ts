@@ -53,15 +53,9 @@ const pageCreator = {
                 input: (e) => {
                     state.user.login = (e.target as HTMLInputElement).value;
                     const checkResult = checkLogin(state.user.login);
-                    if (checkResult != 'ok') {
-                        pageCreator.login["login-helper"].setProps({
-                            value: checkResult,
-                        });
-                    } else {
-                        pageCreator.login["login-helper"].setProps({
-                            value: `&nbsp;`,
-                        });
-                    }
+                    pageCreator.login["login-helper"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    })
                 },
             }
         }),
@@ -82,15 +76,9 @@ const pageCreator = {
                 input: (e) => {
                     state.user.password = (e.target as HTMLInputElement).value;
                     const checkResult = checkPassword(state.user.password);
-                    if (checkResult != 'ok') {
                         pageCreator.login["password-helper"].setProps({
-                            value: checkResult,
+                            value: checkResult === 'ok' ? `&nbsp;` : checkResult,
                         });
-                    } else {
-                        pageCreator.login["password-helper"].setProps({
-                            value: `&nbsp;`,
-                        });
-                    }
                 },
             }
         }),
@@ -129,6 +117,10 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.email = (e.target as HTMLInputElement).value;
+                    const checkResult = checkEmail(state.user.email);
+                    pageCreator.signin["email-helper"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
@@ -148,6 +140,10 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.login = (e.target as HTMLInputElement).value;
+                    const checkResult = checkLogin(state.user.login);
+                    pageCreator.signin["login-helper"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
@@ -167,6 +163,10 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.firstName = (e.target as HTMLInputElement).value;
+                    const checkResult = checkName(state.user.firstName);
+                    pageCreator.signin["name-helper"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
@@ -186,6 +186,10 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.lastName = (e.target as HTMLInputElement).value;
+                    const checkResult = checkLastname(state.user.lastName);
+                    pageCreator.signin["lastname-helper"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
@@ -205,6 +209,10 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.tel = (e.target as HTMLInputElement).value;
+                    const checkResult = checkTel(state.user.tel);
+                    pageCreator.signin["tel-helper"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
@@ -224,6 +232,10 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.password = (e.target as HTMLInputElement).value;
+                    const checkResult = checkPassword(state.user.password);
+                    pageCreator.signin["pass-helper"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
@@ -243,6 +255,15 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.password2 = (e.target as HTMLInputElement).value;
+                    const checkResult = checkPassword(state.user.password2);
+                    if (state.user.password != state.user.password2)
+                        pageCreator.signin["pass2-helper"].setProps({
+                            value: "повторный пароль не совпадает",
+                        });
+                    else
+                        pageCreator.signin["pass2-helper"].setProps({
+                            value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                        });
                 }
             }
         }),
@@ -260,6 +281,22 @@ const pageCreator = {
                 click: (e) => {
                     e.stopPropagation();
                     console.log('Register clicked');
+                    console.log(formData.signinData);
+                    console.log(`проверка почты '${formData.signinData.email}' - `, 
+                        checkEmail(formData.signinData.email) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка логина '${formData.signinData.login}' - `, 
+                        checkLogin(formData.signinData.login) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка имени '${formData.signinData.firstName}' - `, 
+                        checkName(formData.signinData.firstName) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка фамилии '${formData.signinData.lastName}' - `, 
+                        checkLastname(formData.signinData.lastName) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка телефона '${formData.signinData.tel}' - `, 
+                        checkTel(formData.signinData.tel) != 'ok' ? 'not ok' : 'ok');
+                    console.log('проверка пароля: ', 
+                        checkPassword(formData.signinData.password) != 'ok' ? 'not ok' : 'ok');
+                    console.log('проверка повторного пароля: ', 
+                        (checkPassword(formData.signinData.password2) != 'ok' ||
+                        formData.signinData.password2 != formData.signinData.password) ? 'not ok' : 'ok');
                 }
             }
         }),
@@ -289,12 +326,20 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.email = (e.target as HTMLInputElement).value;
+                    const checkResult = checkEmail(state.user.email);
+                    pageCreator.profile["helper-email"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
         "label-email": new Label({
             className: "text-field-wide__label",
             value: "Почта",
+        }),
+        "helper-email": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
         }),
         "input-login": new Input({
             className: "text-field-wide__input",
@@ -304,12 +349,20 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.login = (e.target as HTMLInputElement).value;
+                    const checkResult = checkLogin(state.user.login);
+                    pageCreator.profile["helper-login"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
         "label-login": new Label({
             className: "text-field-wide__label",
             value: "Логин",
+        }),
+        "helper-login": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
         }),
         "input-firstname": new Input({
             className: "text-field-wide__input",
@@ -319,12 +372,20 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.firstName = (e.target as HTMLInputElement).value;
+                    const checkResult = checkName(state.user.firstName);
+                    pageCreator.profile["helper-firstname"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
         "label2-firstname": new Label({
             className: "text-field-wide__label",
             value: "Имя",
+        }),
+        "helper-firstname": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
         }),
         "input-lastname": new Input({
             className: "text-field-wide__input",
@@ -334,12 +395,20 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.lastName = (e.target as HTMLInputElement).value;
+                    const checkResult = checkLastname(state.user.lastName);
+                    pageCreator.profile["helper-lastname"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
         "label-lastname": new Label({
             className: "text-field-wide__label",
             value: "Фамилия",
+        }),
+        "helper-lastname": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
         }),
         "input-chatname": new Input({
             className: "text-field-wide__input",
@@ -349,12 +418,20 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.chatName = (e.target as HTMLInputElement).value;
+                    const checkResult = checkChatname(state.user.chatName);
+                    pageCreator.profile["helper-chatname"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
         "label-chatname": new Label({
             className: "text-field-wide__label",
             value: "Имя в чате",
+        }),
+        "helper-chatname": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
         }),
         "input-tel": new Input({
             className: "text-field-wide__input",
@@ -365,6 +442,10 @@ const pageCreator = {
             events: {
                 input: (e) => {
                     state.user.tel = (e.target as HTMLInputElement).value;
+                    const checkResult = checkTel(state.user.tel);
+                    pageCreator.profile["helper-tel"].setProps({
+                        value: checkResult === 'ok' ? `&nbsp;` : checkResult,
+                    });
                 }
             }
         }),
@@ -372,10 +453,32 @@ const pageCreator = {
             className: "text-field-wide__label",
             value: "Телефон",
         }),
+        "helper-tel": new Label({
+            className: "text-field__helper",
+            value: `&nbsp;`,
+        }),
         "link-changedata": new Link({
-            link: "home",
+            link: "",
             text: "Изменить данные",
             className: "text-field-wide__link_normal",
+            events: {
+                click: (e) => {
+                    console.log('Change data clicked');
+                    console.log(formData.profileData);
+                    console.log(`проверка почты '${formData.profileData.email}' - `, 
+                        checkEmail(formData.profileData.email) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка логина '${formData.profileData.login}' - `, 
+                        checkLogin(formData.profileData.login) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка имени '${formData.profileData.firstName}' - `, 
+                        checkName(formData.profileData.firstName) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка фамилии '${formData.profileData.lastName}' - `, 
+                        checkLastname(formData.profileData.lastName) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка имени в чате '${formData.profileData.chatName}' - `, 
+                        checkChatname(formData.profileData.chatName) != 'ok' ? 'not ok' : 'ok');
+                    console.log(`проверка телефона '${formData.profileData.tel}' - `, 
+                        checkTel(formData.profileData.tel) != 'ok' ? 'not ok' : 'ok');
+                }
+            }
         }),
         "break1": new Break({}),
         "link-changepassword": new Link({
@@ -495,6 +598,13 @@ function checkLogin(login: string): string{
         return 'ok';
 }
 
+function checkChatname(chatName: string): string{
+    if(!/^[0-9A-ZА-Я-_]+$/i.test(chatName))
+        return "введите имя в чате без спецсимволов";
+    else
+        return 'ok';
+}
+
 function checkPassword(password: string): string{
     if (password.length < 8)
         return "введите не менее 8 символов";
@@ -504,6 +614,40 @@ function checkPassword(password: string): string{
         return "должна быть хотя бы одна цифра";
     else if(!/[A-ZА-Я]/.test(password))
         return "должна быть хотябы одна заглавная буква";
+    else
+        return 'ok';
+}
+
+function checkEmail(email: string): string{
+    if (/[А-Я]/i.test(email))
+        return "введите email на латинице";
+    else if (!/^(.+)@[A-Z]{1,}\.(.+)$/i.test(email))
+        return "email неверного формата";  
+    else
+        return 'ok';
+}
+
+function checkName(name: string): string{
+    if (!/^[A-ZА-Я]{1}[a-zA-Zа-яА-Я-]*$/.test(name))
+        return "имя должно быть с заглавной буквы без спецсимволов и цифр";
+    else
+        return 'ok';
+}
+
+function checkLastname(lastname: string): string{
+    if (!/^[A-ZА-Я]{1}[a-zA-Zа-яА-Я-]*$/.test(lastname))
+        return "фамилия должна быть с заглавной буквы без спецсимволов и цифр";
+    else
+        return 'ok';
+}
+
+function checkTel(tel: string): string{
+    if (tel.length < 10)
+        return "введен слишком короткий номер";
+    else if (tel.length > 15)
+        return "введен слишком длинный номер";
+    else if (!/^\+?[0-9]*$/.test(tel))
+        return "введите только цифры";
     else
         return 'ok';
 }

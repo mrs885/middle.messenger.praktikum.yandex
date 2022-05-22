@@ -6,7 +6,7 @@ interface LinkProps{
     text: string,
     className?: string,
     events?: {
-        click?: () => void,
+        click?: (e: Event) => void,
         focus?: (e: Event) => void,
     },
   }

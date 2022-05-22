@@ -137,7 +137,50 @@ export const formData = {
         get password() {
             return state.user.password;
         }
-    }
+    },
+    signinData: {
+        get email() {
+            return state.user.email;
+        },
+        get login() {
+            return state.user.login;
+        },
+        get firstName() {
+            return state.user.firstName;
+        },
+        get lastName() {
+            return state.user.lastName;
+        },
+        get tel() {
+            return state.user.tel;
+        },
+        get password() {
+            return state.user.password;
+        },
+        get password2() {
+            return state.user.password2;
+        },
+    },
+    profileData: {
+        get email() {
+            return state.user.email;
+        },
+        get login() {
+            return state.user.login;
+        },
+        get firstName() {
+            return state.user.firstName;
+        },
+        get lastName() {
+            return state.user.lastName;
+        },
+        get chatName() {
+            return state.user.chatName;
+        },
+        get tel() {
+            return state.user.tel;
+        },
+    },
 };
 
 export default state;
