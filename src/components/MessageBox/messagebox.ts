@@ -1,6 +1,6 @@
-import "./messageBox.scss";
+import "./messagebox.scss";
 import Block from "../../utils/Block";
-import template from "./messageBox.hbs";
+import template from "./messagebox.hbs";
 
 interface MessageBoxProps{
   "is-active": string,
