@@ -14,7 +14,7 @@ import backImg from "../static/back.png"
 import findImg from "../static/find.png"
 import greyImg from "../static/grey.png"
 import { Break } from "./components/Break/break";
-import { MessageBox } from "./components/MessageBox/messageBox";
+import { MessageBox } from "./components/MessageBox/messagebox";
 import { DivLink } from "./components/Link/divlink";
 import { ChatParent } from "./components/ChatParent/chatParent";
 
