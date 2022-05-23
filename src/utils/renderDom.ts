@@ -2,7 +2,7 @@ import Block from "./Block";
 
 export function renderDom(rootSelector: string, component: Block) : HTMLElement{
 
-    const root: HTMLElement = document.getElementById(rootSelector)
+    const root: HTMLElement | null = document.getElementById(rootSelector)
 
     if (!root){
         throw new Error ("нет Root!")
@@ -12,7 +12,7 @@ export function renderDom(rootSelector: string, component: Block) : HTMLElement{
 
     root.innerHTML = '';    
 
-    root.append(component.getContent());
+    root.append(component.getContent() as Node);
 
     return root;
     
