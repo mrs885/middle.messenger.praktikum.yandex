@@ -51,7 +51,7 @@ const pageCreator = {
             value: state.user.login,
             events: {
                 input: (e) => {
-                    state.user.login = (e.target as HTMLInputElement).value;
+                    state.user.login = (e!.target as HTMLInputElement).value;
                     const checkResult = checkLogin(state.user.login);
                     pageCreator.login["login-helper"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -74,7 +74,7 @@ const pageCreator = {
             value: state.user.password,
             events: {
                 input: (e) => {
-                    state.user.password = (e.target as HTMLInputElement).value;
+                    state.user.password = (e!.target as HTMLInputElement).value;
                     const checkResult = checkPassword(state.user.password);
                         pageCreator.login["password-helper"].setProps({
                             value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -94,7 +94,7 @@ const pageCreator = {
             label: "Авторизоваться",
             events: {
                 click: (e) => {
-                    e.stopPropagation();
+                    e!.stopPropagation();
                     console.log(formData.loginData);
                     console.log(`проверка логина '${formData.loginData.login}' - `, 
                         checkLogin(formData.loginData.login) != 'ok' ? 'not ok' : 'ok');
@@ -116,7 +116,7 @@ const pageCreator = {
             value: state.user.email,
             events: {
                 input: (e) => {
-                    state.user.email = (e.target as HTMLInputElement).value;
+                    state.user.email = (e!.target as HTMLInputElement).value;
                     const checkResult = checkEmail(state.user.email);
                     pageCreator.signin["email-helper"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -139,7 +139,7 @@ const pageCreator = {
             value: state.user.login,
             events: {
                 input: (e) => {
-                    state.user.login = (e.target as HTMLInputElement).value;
+                    state.user.login = (e!.target as HTMLInputElement).value;
                     const checkResult = checkLogin(state.user.login);
                     pageCreator.signin["login-helper"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -162,7 +162,7 @@ const pageCreator = {
             value: state.user.firstName,
             events: {
                 input: (e) => {
-                    state.user.firstName = (e.target as HTMLInputElement).value;
+                    state.user.firstName = (e!.target as HTMLInputElement).value;
                     const checkResult = checkName(state.user.firstName);
                     pageCreator.signin["name-helper"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -185,7 +185,7 @@ const pageCreator = {
             value: state.user.lastName,
             events: {
                 input: (e) => {
-                    state.user.lastName = (e.target as HTMLInputElement).value;
+                    state.user.lastName = (e!.target as HTMLInputElement).value;
                     const checkResult = checkLastname(state.user.lastName);
                     pageCreator.signin["lastname-helper"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -208,7 +208,7 @@ const pageCreator = {
             value: state.user.tel,
             events: {
                 input: (e) => {
-                    state.user.tel = (e.target as HTMLInputElement).value;
+                    state.user.tel = (e!.target as HTMLInputElement).value;
                     const checkResult = checkTel(state.user.tel);
                     pageCreator.signin["tel-helper"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -231,7 +231,7 @@ const pageCreator = {
             value: state.user.password,
             events: {
                 input: (e) => {
-                    state.user.password = (e.target as HTMLInputElement).value;
+                    state.user.password = (e!.target as HTMLInputElement).value;
                     const checkResult = checkPassword(state.user.password);
                     pageCreator.signin["pass-helper"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -254,7 +254,7 @@ const pageCreator = {
             value: state.user.password2,
             events: {
                 input: (e) => {
-                    state.user.password2 = (e.target as HTMLInputElement).value;
+                    state.user.password2 = (e!.target as HTMLInputElement).value;
                     const checkResult = checkPassword(state.user.password2);
                     if (state.user.password != state.user.password2)
                         pageCreator.signin["pass2-helper"].setProps({
@@ -279,7 +279,7 @@ const pageCreator = {
             label: "Зарегистрироваться",
             events: {
                 click: (e) => {
-                    e.stopPropagation();
+                    e!.stopPropagation();
                     console.log('Register clicked');
                     console.log(formData.signinData);
                     console.log(`проверка почты '${formData.signinData.email}' - `, 
@@ -325,7 +325,7 @@ const pageCreator = {
             value: state.user.email,
             events: {
                 input: (e) => {
-                    state.user.email = (e.target as HTMLInputElement).value;
+                    state.user.email = (e!.target as HTMLInputElement).value;
                     const checkResult = checkEmail(state.user.email);
                     pageCreator.profile["helper-email"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -348,7 +348,7 @@ const pageCreator = {
             value: state.user.login,
             events: {
                 input: (e) => {
-                    state.user.login = (e.target as HTMLInputElement).value;
+                    state.user.login = (e!.target as HTMLInputElement).value;
                     const checkResult = checkLogin(state.user.login);
                     pageCreator.profile["helper-login"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -371,7 +371,7 @@ const pageCreator = {
             value: state.user.firstName,
             events: {
                 input: (e) => {
-                    state.user.firstName = (e.target as HTMLInputElement).value;
+                    state.user.firstName = (e!.target as HTMLInputElement).value;
                     const checkResult = checkName(state.user.firstName);
                     pageCreator.profile["helper-firstname"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -394,7 +394,7 @@ const pageCreator = {
             value: state.user.lastName,
             events: {
                 input: (e) => {
-                    state.user.lastName = (e.target as HTMLInputElement).value;
+                    state.user.lastName = (e!.target as HTMLInputElement).value;
                     const checkResult = checkLastname(state.user.lastName);
                     pageCreator.profile["helper-lastname"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -417,7 +417,7 @@ const pageCreator = {
             value: state.user.chatName,
             events: {
                 input: (e) => {
-                    state.user.chatName = (e.target as HTMLInputElement).value;
+                    state.user.chatName = (e!.target as HTMLInputElement).value;
                     const checkResult = checkChatname(state.user.chatName);
                     pageCreator.profile["helper-chatname"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -441,7 +441,7 @@ const pageCreator = {
             value: state.user.tel,
             events: {
                 input: (e) => {
-                    state.user.tel = (e.target as HTMLInputElement).value;
+                    state.user.tel = (e!.target as HTMLInputElement).value;
                     const checkResult = checkTel(state.user.tel);
                     pageCreator.profile["helper-tel"].setProps({
                         value: checkResult === 'ok' ? `&nbsp;` : checkResult,
@@ -462,7 +462,7 @@ const pageCreator = {
             text: "Изменить данные",
             className: "text-field-wide__link_normal",
             events: {
-                click: (e) => {
+                click: () => {
                     console.log('Change data clicked');
                     console.log(formData.profileData);
                     console.log(`проверка почты '${formData.profileData.email}' - `, 
@@ -506,7 +506,7 @@ const pageCreator = {
             value: "",
             events: {
                 input: (e) => {
-                    console.log((e.target as HTMLInputElement).value);
+                    console.log((e!.target as HTMLInputElement).value);
                 }
             }
         }),
@@ -554,7 +554,7 @@ for (let i = 1; i < 7; i++){
     mBoxes.push(newMessageBox);
 }
 
-pageCreator.main.messageBoxes = mBoxes;
+(pageCreator.main.messageBoxes as any) = mBoxes;
 
 const router : Record<string, Block> = {
     home: Home(pageCreator.indexPages),
@@ -573,9 +573,9 @@ const root = renderDom('app', router['home']);
 
 root.addEventListener('click', handler);
 
-function handler(event){
+function handler(event: Event){
     event.preventDefault();
-    const route = event.target.attributes[0]['nodeValue'];
+    const route = (event.target as any).attributes[0]['nodeValue'];
     Object.keys(router).forEach(r => {
         if (r == route){
             renderDom('app', router[route]);
