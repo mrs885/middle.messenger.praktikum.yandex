@@ -516,6 +516,7 @@ const pageCreator = {
         }),
         messageBoxes: [],
         chatParent: new ChatParent({
+            chatId: 0,
             className: "main__right-area",
         }),
     },

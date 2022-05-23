@@ -6,7 +6,7 @@ import { ChatHead } from "../ChatHead/chatHead";
 import { ChatFooter } from "../ChatFooter/chatFooter";
 
 interface ChatParentProps{
-  chatId?: number,
+  chatId: number,
   className?: string,
   events?:{
     click?: () => void;

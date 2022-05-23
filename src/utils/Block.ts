@@ -1,6 +1,5 @@
 import EventBus from "./EventBus";
 import { nanoid } from 'nanoid';
-import { isJSDocThisTag } from "typescript";
 import { template } from "handlebars";
 
 export default class Block {
@@ -14,7 +13,7 @@ export default class Block {
     public id = nanoid(6);
 
     private _element : HTMLElement | null = null;
-    private _meta : { props: any } = null;
+    private _meta : { props: any } | null = null;
 
     protected props: any;
     protected children: Record<string, Block | Block[]>;
@@ -56,8 +55,8 @@ export default class Block {
     };
 
     _getChildren(propsAndChildren: any) {
-      const children = {}; 
-      const props = {};
+      const children: Record<string, Block | Block[]> = {}; 
+      const props: any = {};
 
       Object.entries(propsAndChildren).forEach(([key, value]) => {
         if (value instanceof Block) {
@@ -65,7 +64,7 @@ export default class Block {
         } else if(Array.isArray(value) && value.every(v => (v instanceof Block))) {
           children[key] = value;
         } else {
-          props[key] = value;
+          props[key]  = value;
         }
       });
 
@@ -98,7 +97,7 @@ export default class Block {
             const stub = fragment.content.querySelector(`[data-id="id-${ch.id}"]`);
             if (!stub)
               return;
-            stub.replaceWith(ch.getContent());
+            stub.replaceWith(ch.getContent() as Node);
           })
         }
         else {
@@ -107,7 +106,7 @@ export default class Block {
           if (!stub)
             return;
 
-          stub.replaceWith(child.getContent());
+          stub.replaceWith(child.getContent()  as Node);
         }
       })  
 
@@ -115,7 +114,7 @@ export default class Block {
       return fragment.content;
     }
   
-    _registerEvents(eventBus) {
+    _registerEvents(eventBus: EventBus): void {
       eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
       eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
@@ -233,7 +232,7 @@ export default class Block {
       });
     }
   
-    _createDocumentElement(tagName) {
+    _createDocumentElement(tagName: string) {
       // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
       return document.createElement(tagName);
     }
@@ -265,10 +264,10 @@ export default class Block {
     }
   
     show() {
-      this.getContent().style.display = "block";
+      this.getContent()!.style.display = "block";
     }
   
     hide() {
-      this.getContent().style.display = "none";
+      this.getContent()!.style.display = "none";
     }
   }

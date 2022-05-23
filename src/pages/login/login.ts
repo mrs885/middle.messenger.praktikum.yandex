@@ -6,7 +6,7 @@ import state from "../../utils/state"
 export default (props: any) : Block => {
     
     class LoginPage extends Block{
-        constructor(props) {
+        constructor(props: any) {
             super(props);
         }
     

@@ -6,8 +6,8 @@ const METHODS = {
 };
 
 type Options = {
-    headers?: object,
-    data?: object,
+    headers?: any,
+    data?: string,
     method?: string,
     timeout?: number,
 }
@@ -16,16 +16,18 @@ type Options = {
 * На входе: объект. Пример: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
 * На выходе: строка. Пример: ?a=1&b=2&c=[object Object]&k=1,2,3
 */
-function queryStringify(data: any) {
+function queryStringify(data: any): string {
   if (!data) return '';
   // Можно делать трансформацию GET-параметров в отдельной функции
   const dataArr = [];
   let result = '';
   for (const key of Object.keys(data)) {
-    if (Array.isArray(data[key])) {result = `${key}=${data[key].join(',')}`;}
-    else if (typeof data[key] === 'object') {result = `${key}=[object Object]`;}
+    if (Array.isArray(data[key])) 
+      result = `${key}=${data[key].join(',')}`;
+    else if (typeof data[key] === 'object') 
+      result = `${key}=[object Object]`;
     else
-      {result = `${key}=${data[key]}`;}
+      result = `${key}=${data[key]}`;
     dataArr.push(result);
   }
   return `?${dataArr.join('&')}`;
@@ -33,8 +35,10 @@ function queryStringify(data: any) {
 
 export class HTTPTransport {
   get = (url: string, options: Options = {}) => {
-    let data;
-    if (options.data) {data = queryStringify(options.data)};
+    let data = '';
+    if (options.data) 
+      data = queryStringify(options.data);
+
     return this.request(url, { ...options, method: METHODS.GET, data }, options.timeout);
   };
 
@@ -51,7 +55,7 @@ export class HTTPTransport {
       const xhr = new XMLHttpRequest();
 
       if (options.method !== 'GET')
-        xhr.open(options.method, url);
+        xhr.open(options.method as string, url);
       else
         xhr.open(options.method, url + data);
 

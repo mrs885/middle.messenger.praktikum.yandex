@@ -17,15 +17,6 @@ export class ChatBox extends Block{
         super( props);
     }
 
-    protected template(context?: Record<string, any>): string {
-        return `
-        <div class="chat-box">
-            Наш чатик!
-            ${context.chatId}
-        </div>
-        `; 
-    };
-
     protected hasChatItems: boolean;
 
     componentDidUpdate(oldProps: any, newProps: any): boolean {
