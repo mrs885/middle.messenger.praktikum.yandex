@@ -1,0 +1,36 @@
+$color-inputbckg: rgb(220, 220, 220);
+
+.chat-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-footer__attach{
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+.chat-footer__new-message{
+    text-align: left;
+    width: 100%;
+    color: black;
+}
+
+.chat-footer__new-message .message-input{
+    width: 100%;
+    font-size: 12pt;
+    background-color: $color-inputbckg;
+    border: none;
+    border-radius: 1.5rem;
+    height: 2rem;
+    padding: 0 15px;
+}   
+
+.chat-footer__send .butt-round{
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    transform: rotate(180deg);
+}
