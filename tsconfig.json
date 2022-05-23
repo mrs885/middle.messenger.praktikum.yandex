@@ -3,6 +3,7 @@
       "outDir": "dist",
       "module": "commonjs",
       "noImplicitAny": true,
+      "noUnusedParameters": true,
       "sourceMap": true,
       "preserveConstEnums": true,
       "target": "es2016",
